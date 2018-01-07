@@ -28,6 +28,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setLoginCallback();
         setProfileTracker();
+
         setAccessTokenTracker();
     }
 
