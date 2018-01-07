@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_favorites"
+        android:enabled="true"
+        android:icon="@android:drawable/btn_star"
+        android:title="Home"
+        app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/action_schedules"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_camera"
+        android:title="QR Scan"
+        app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/action_music"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_dialog_alert"
+        android:title="music"
+        app:showAsAction="always|withText" />
+
+    <item
+        android:id="@+id/action_music2"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_media_pause"
+        android:title="More"
+        app:showAsAction="always|withText" />
+</menu>
