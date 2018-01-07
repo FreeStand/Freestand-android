@@ -12,5 +12,4 @@ public class FbData {
     static AccessToken accessToken;
     static String userFirstName = profile.getFirstName();
     static String userLastNAme = profile.getLastName();
-    static String userEmail = profile.
 }

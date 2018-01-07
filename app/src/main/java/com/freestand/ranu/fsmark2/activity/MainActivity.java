@@ -3,12 +3,12 @@ package com.freestand.ranu.fsmark2.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
