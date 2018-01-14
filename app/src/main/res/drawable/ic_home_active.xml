@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:viewportWidth="24"
+    android:viewportHeight="24" android:width="24dp" android:height="24dp">
+    <group android:name="home">
+        <path android:fillColor="#FFFFFF" android:strokeWidth="1" android:name="Combined-Shape"
+            android:fillType="nonZero" android:strokeColor="#00000000"
+            android:pathData="M2.38605939,8.21064778 L11.3860594,1.21064778 C11.7471699,0.929784072 12.2528301,0.929784072 12.6139406,1.21064778 L21.6139406,8.21064778 C21.8575272,8.40010398 22,8.69140957 22,9 L22,20 C22,21.6568542 20.6568542,23 19,23 L5,23 C3.34314575,23 2,21.6568542 2,20 L2,9 C2,8.69140957 2.14247284,8.40010398 2.38605939,8.21064778 Z M9,12 L9,21 L15,21 L15,12 L9,12 Z" />
+    </group>
+</vector>

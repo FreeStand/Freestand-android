@@ -8,7 +8,6 @@ import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.GraphRequest;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
@@ -39,7 +38,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
-        Log.e("rcode, rreslt, data", requestCode + " " + requestCode + " "+ data.toString());
         super.onActivityResult(requestCode, resultCode, data);
         Intent intent = new Intent(MainActivity.this, AfterLogin.class);
         startActivity(intent);
@@ -58,6 +56,7 @@ public class MainActivity extends BaseActivity {
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
+                        Log.e("login result", loginResult.toString());
                     }
                     @Override
                     public void onCancel() {

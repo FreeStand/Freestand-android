@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="splashScreenTheme" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar">
-        <item name="android:windowBackground">@color/com_facebook_blue</item>
+        <item name="android:layout">@layout/splash_screen</item>
     </style>
     <style name="NavigationTheme" parent="AppTheme">
         <item name="android:textSize">50sp</item>
