@@ -1,4 +1,4 @@
-package com.freestand.ranu.fsmark2.activity;
+package com.freestand.ranu.fsmark2.Activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
