@@ -5,6 +5,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.freestand.ranu.fsmark2.R;
@@ -13,6 +14,9 @@ import com.freestand.ranu.fsmark2.fragment.Alerts;
 import com.freestand.ranu.fsmark2.fragment.Home;
 import com.freestand.ranu.fsmark2.fragment.More;
 import com.freestand.ranu.fsmark2.fragment.QRScanner;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class AfterLogin extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
@@ -23,6 +27,7 @@ public class AfterLogin extends BaseActivity implements BottomNavigationView.OnN
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.drawable.logo_white);
         getSupportActionBar().setTitle("");
+        Log.e("hello ", FirebaseInstanceId.getInstance().getToken());
     }
 
     @Override

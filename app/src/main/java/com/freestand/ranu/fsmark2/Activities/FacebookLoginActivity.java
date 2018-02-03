@@ -51,11 +51,11 @@ public class FacebookLoginActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
-        Log.e("result activity ", accessToken.getToken());
+//        Log.e("result activity ", accessToken.getToken());
         handleFacebookAccessToken(accessToken);
 
-//        Intent intent = new Intent(FacebookLoginActivity.this, AfterLogin.class);
-//        startActivity(intent);
+        Intent intent = new Intent(FacebookLoginActivity.this, AfterLogin.class);
+        startActivity(intent);
     }
 
     @Override
