@@ -37,6 +37,7 @@ public class AppController extends Application {
         Stetho.initializeWithDefaults(this);
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         Fabric.with(this, new Crashlytics());
+        Stetho.initializeWithDefaults(this);
     }
 
     public static synchronized AppController getInstance() {

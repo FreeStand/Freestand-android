@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/getAlerts/";
+    public static final String BASE_URL = "https://us-central1-fsmark0-c03e0.cloudfunctions.net/";
     private static Retrofit retrofit = null;
 
 

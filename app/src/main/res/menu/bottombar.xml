@@ -7,6 +7,13 @@
         android:icon="@drawable/selector_home"
         android:title="Home"
         app:showAsAction="always|withText" />
+
+    <item
+        android:id="@+id/action_coupon"
+        android:enabled="true"
+        android:icon="@drawable/selector_coupon"
+        android:title="Coupons"
+        app:showAsAction="always|withText" />
     <item
         android:id="@+id/action_qr"
         android:enabled="true"

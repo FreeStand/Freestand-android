@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.freestand.ranu.fsmark2.R;
 import com.freestand.ranu.fsmark2.customview.BottomNavigationViewHelper;
+import com.freestand.ranu.fsmark2.data.UserHandler;
 import com.freestand.ranu.fsmark2.fragment.Alerts;
 import com.freestand.ranu.fsmark2.fragment.Home;
 import com.freestand.ranu.fsmark2.fragment.More;
@@ -28,6 +29,7 @@ public class AfterLogin extends BaseActivity implements BottomNavigationView.OnN
         getSupportActionBar().setIcon(R.drawable.logo_white);
         getSupportActionBar().setTitle("");
         Log.e("hello ", FirebaseInstanceId.getInstance().getToken());
+        UserHandler userHandler = new UserHandler(this);
     }
 
     @Override

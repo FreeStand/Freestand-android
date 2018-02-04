@@ -5,26 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <fragment
-        android:id="@+id/barcode_scanner"
-        android:name="info.androidhive.barcode.BarcodeReader"
+    <me.dm7.barcodescanner.zxing.ZXingScannerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:auto_focus="true"
-        app:use_flash="false" />
+        android:id="@+id/scan_view"
+        android:outlineProvider="none"
+        app:squaredFinder="false"
+        app:maskColor="@android:color/transparent"
+        app:borderColor="@android:color/transparent"
+        app:roundedCorner="true"
+        >
 
-    <info.androidhive.barcode.ScannerOverlay
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:line_color="@color/colorPrimaryDark"
-        app:line_speed="4"
-        app:line_width="4"
-        app:square_height="230"
-        app:square_width="300"/>
+    </me.dm7.barcodescanner.zxing.ZXingScannerView>
     <LinearLayout
+        android:padding="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:background="@drawable/scan_overlay"
         android:orientation="horizontal">
         <ImageView
             android:layout_width="wrap_content"
