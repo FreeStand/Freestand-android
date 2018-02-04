@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/option_layout">
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="10">
+        <RadioButton android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"/>
+        <com.freestand.ranu.fsmark2.customview.AutoResizeTextView
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="9"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:text="option 1option 1option"/>
+    </LinearLayout>
+
+</RelativeLayout>

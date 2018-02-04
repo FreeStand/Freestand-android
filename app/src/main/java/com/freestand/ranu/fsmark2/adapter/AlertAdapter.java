@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.freestand.ranu.fsmark2.R;
-import com.freestand.ranu.fsmark2.data.model.Alert;
+import com.freestand.ranu.fsmark2.data.model.alert.Alert;
 
 import java.util.ArrayList;
 import java.util.List;

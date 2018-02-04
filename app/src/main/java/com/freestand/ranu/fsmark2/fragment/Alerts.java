@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import com.freestand.ranu.fsmark2.AppController;
 import com.freestand.ranu.fsmark2.R;
 import com.freestand.ranu.fsmark2.adapter.AlertAdapter;
-import com.freestand.ranu.fsmark2.data.model.Alert;
+import com.freestand.ranu.fsmark2.data.model.alert.Alert;
 import com.freestand.ranu.fsmark2.data.network.rest.ApiClient;
 import com.freestand.ranu.fsmark2.data.network.rest.ApiInterface;
 

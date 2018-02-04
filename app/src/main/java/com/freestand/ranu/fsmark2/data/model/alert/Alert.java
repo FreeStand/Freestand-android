@@ -1,4 +1,4 @@
-package com.freestand.ranu.fsmark2.data.model;
+package com.freestand.ranu.fsmark2.data.model.alert;
 
 /**
  * Created by prateek on 04/02/18.
