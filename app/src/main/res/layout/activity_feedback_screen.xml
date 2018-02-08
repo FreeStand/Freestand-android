@@ -8,19 +8,19 @@
     tools:context="com.freestand.ranu.fsmark2.Activities.FeedbackScreen">
 
     <ProgressBar
-        android:id="@+id/progressBar2"
+        android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:progress="2"
-        android:max="10" />
+        android:max="4" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/linearLayout">
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_progress"
             android:layout_width="64dp"
             android:layout_height="30dp"
             android:textSize="14sp"
@@ -37,7 +37,7 @@
             android:background="@drawable/rectangle_check_qr"/>
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tv_question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -49,6 +49,7 @@
             android:textSize="17sp"
             android:textStyle="bold"
             android:padding="8dp"
+            android:minLines="2"
             android:text="This is the question This is the question " />
 
 
@@ -74,20 +75,71 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.988">
 
-        <include layout="@layout/item_option"/>
-        <include layout="@layout/item_option"/>
-        <include layout="@layout/item_option"/>
-        <include layout="@layout/item_option"/>
-        <include layout="@layout/item_option"/>
-        <include layout="@layout/item_option"/>
-        <include layout="@layout/item_option"/>
-        <include layout="@layout/item_option"/>
+        <RadioGroup
+            android:id="@+id/radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical" >
+            <RadioButton android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="option1"
+                android:id="@+id/option1"
+                android:padding="5dp"
+                android:layout_gravity="center"/>
+            <RadioButton android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:text="option2"
+                android:id="@+id/option2"
+                android:layout_gravity="center"/>
+            <RadioButton android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:text="option3"
+                android:id="@+id/option3"
+                android:layout_gravity="center"/>
+            <RadioButton android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:text="option4"
+                android:id="@+id/option4"
+                android:layout_gravity="center"/>
+            <RadioButton android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:text="option5"
+                android:id="@+id/option5"
+                android:layout_gravity="center"/>
+            <RadioButton android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:text="option6"
+                android:id="@+id/option6"
+                android:layout_gravity="center"/>
+            <RadioButton android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:text="option7"
+                android:id="@+id/option7"
+                android:layout_gravity="center"/>
+            <RadioButton android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:text="option8"
+                android:id="@+id/option8"
+                android:layout_gravity="center"/>
+
+        </RadioGroup>
+
+
 
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

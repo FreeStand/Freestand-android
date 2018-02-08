@@ -6,7 +6,9 @@ package com.freestand.ranu.fsmark2.data.model.checkqr;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Question {
+import java.io.Serializable;
+
+public class Question implements Serializable{
 
     @SerializedName("option1")
     private String option1;
@@ -22,6 +24,36 @@ public class Question {
     private String option4;
     @SerializedName("option5")
     private String option5;
+    @SerializedName("option6")
+    private String option6;
+    @SerializedName("option7")
+    private String option7;
+    @SerializedName("option8")
+    private String option8;
+
+    public String getOption6() {
+        return option6;
+    }
+
+    public void setOption6(String option6) {
+        this.option6 = option6;
+    }
+
+    public String getOption7() {
+        return option7;
+    }
+
+    public void setOption7(String option7) {
+        this.option7 = option7;
+    }
+
+    public String getOption8() {
+        return option8;
+    }
+
+    public void setOption8(String option8) {
+        this.option8 = option8;
+    }
 
     public String getOption1() {
         return option1;

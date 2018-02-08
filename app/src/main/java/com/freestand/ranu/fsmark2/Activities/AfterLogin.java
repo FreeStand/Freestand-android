@@ -13,10 +13,7 @@ import com.freestand.ranu.fsmark2.customview.BottomNavigationViewHelper;
 import com.freestand.ranu.fsmark2.data.UserHandler;
 import com.freestand.ranu.fsmark2.fragment.Alerts;
 import com.freestand.ranu.fsmark2.fragment.Home;
-import com.freestand.ranu.fsmark2.fragment.More;
 import com.freestand.ranu.fsmark2.fragment.QRScanner;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 public class AfterLogin extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
@@ -57,10 +54,6 @@ public class AfterLogin extends BaseActivity implements BottomNavigationView.OnN
                 return true;
             case R.id.action_alerts:
                 fragment = new Alerts();
-                loadFragment(fragment);
-                return true;
-            case R.id.action_more:
-                fragment = new More();
                 loadFragment(fragment);
                 return true;
         }

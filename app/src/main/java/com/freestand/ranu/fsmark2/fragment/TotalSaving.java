@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 import com.freestand.ranu.fsmark2.R;
 
 /**
- * Created by prateek on 14/1/18.
+ * Created by prateek on 07/02/18.
  */
 
-public class More extends Fragment {
+public class TotalSaving extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +22,7 @@ public class More extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_more, container, false);
+        View view = inflater.inflate(R.layout.fragment_total_saving, container, false);
         return view;
     }
 }

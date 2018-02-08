@@ -1,5 +1,6 @@
 package com.freestand.ranu.fsmark2.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.freestand.ranu.fsmark2.Activities.FeedbackScreen;
 import com.freestand.ranu.fsmark2.R;
 import com.freestand.ranu.fsmark2.data.model.alert.Alert;
 import com.freestand.ranu.fsmark2.data.model.checkqr.CheckQr;
@@ -17,6 +19,7 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.zxing.Result;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +50,7 @@ public class QRScanner extends Fragment implements ZXingScannerView.ResultHandle
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_qr_scanner, container, false);
         ButterKnife.bind(this, view);
+        getData();
         return view;
     }
 
@@ -82,6 +86,11 @@ public class QRScanner extends Fragment implements ZXingScannerView.ResultHandle
             public void onResponse(Call<CheckQr>call, Response<CheckQr> response) {
                 Log.e("response ", response.toString());
                 CheckQr checkQr = response.body();
+                if(checkQr.getStatus().equals("valid")) {
+                    Intent intent = new Intent(getActivity(), FeedbackScreen.class);
+                    intent.putExtra("question_list", (Serializable) checkQr.getDict().getQuestions());
+                    startActivity(intent);
+                }
                 Log.d("hello ", "Number of alerts received: " + response.toString());
             }
 

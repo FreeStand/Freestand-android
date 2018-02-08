@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/total_saving"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Total Savings" />
+        <item
+            android:id="@+id/delivery_status"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Delivery Status" />
+        <item
+            android:id="@+id/faq"
+            android:layout_width="wrap_content"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="FAQ" />
+    </group>
+
+    <group android:checkableBehavior="none">
+            <item
+                android:id="@+id/contact_us"
+                android:icon="@android:drawable/ic_menu_search"
+                android:title="Contact Us" />
+            <item
+                android:id="@+id/log_out"
+                android:icon="@drawable/ic_menu_send"
+                android:title="LogOut" />
+    </group>
+
+</menu>
