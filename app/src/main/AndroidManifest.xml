@@ -58,7 +58,7 @@
         <activity
             android:name=".Activities.LandingScreen"
             android:label="@string/title_activity_screen_landing"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

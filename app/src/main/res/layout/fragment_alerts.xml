@@ -9,7 +9,7 @@
         android:id="@+id/rv_alerts"
         android:paddingTop="5dp"
         android:layout_gravity="center"
-        android:background="@color/bluey_grey">
+        android:background="@drawable/background_image">
 
     </android.support.v7.widget.RecyclerView>
 </LinearLayout>

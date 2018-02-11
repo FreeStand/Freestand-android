@@ -7,6 +7,7 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -131,30 +132,26 @@ public class FeedbackScreen extends AppCompatActivity implements View.OnClickLis
                 flipit(groupView);
                 updateData(currentPage);
             } else if(currentPage == totalNoOfQues) {
+                Log.e("current page", "checking ");
             }
         }
     }
     private void flipit(final View viewToFlip) {
 
         ObjectAnimator flip = ObjectAnimator.ofFloat(viewToFlip, "rotationY", 180f, 0f);
-
         flip.setDuration(300);
-
         viewToFlip.setCameraDistance(100 * viewToFlip.getWidth());
         flip.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation, boolean isReverse) {
                 answerOptionParent.setVisibility(View.GONE);
-
             }
 
             @Override
             public void onAnimationEnd(Animator animation, boolean isReverse) {
                 answerOptionParent.setVisibility(View.VISIBLE);
-
             }
         });
-
         flip.start();
    }
 

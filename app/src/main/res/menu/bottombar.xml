@@ -26,10 +26,5 @@
         android:icon="@drawable/selector_alerts"
         android:title="Alerts"
         app:showAsAction="always|withText" />
-    <item
-        android:id="@+id/action_contest"
-        android:enabled="true"
-        android:icon="@drawable/com_facebook_profile_picture_blank_portrait"
-        android:title="Contests"
-        app:showAsAction="always|withText" />
+
 </menu>

@@ -3,7 +3,7 @@
     <string name="facebook_app_id">231194260726376</string>
     <string name="fb_login_protocol_scheme">fb231194260726376</string>
     <string name="title_activity_screen_landing">ScreenLanding</string>
-
+    <string name="edit">&#xf040;</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="freestand_email">aryan@freestand.com</string>

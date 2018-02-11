@@ -85,12 +85,6 @@ public class UserHandler extends DatabaseHandler {
         user.setGender(cursor.getString(5));
         user.setPhotoUrl(cursor.getString(6));
         user.setPhoneNumber(cursor.getString(7));
-
-//        User user = new User(cursor.getString(0),
-//                cursor.getString(1), cursor.getString(2));
-//
-
-        // return user
         return user;
     }
 
