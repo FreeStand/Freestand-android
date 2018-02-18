@@ -10,8 +10,10 @@ import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.stetho.Stetho;
+import com.freestand.ranu.fsmark2.data.FirebaseDatabaseHelper;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -20,14 +22,12 @@ import io.fabric.sdk.android.Fabric;
  */
 
 public class AppController extends Application {
-    public static final String TAG = AppController.class
-            .getSimpleName();
 
+    private final String TAG = getClass().getSimpleName();
     private static AppController mInstance;
     public static FirebaseAnalytics firebaseAnalytics;
     public static SharedPreferences sharedPreferences;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static DatabaseReference mDatabase;
+    public static final String MyPREFERENCES = "FreeStand_Prefs" ;
 
     @Override
     public void onCreate() {
@@ -38,7 +38,10 @@ public class AppController extends Application {
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         Fabric.with(this, new Crashlytics());
         Stetho.initializeWithDefaults(this);
+        initilaiseFireBaseDb();
     }
+
+    private void initilaiseFireBaseDb() {}
 
     public static synchronized AppController getInstance() {
         return mInstance;

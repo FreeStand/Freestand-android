@@ -11,42 +11,42 @@ import com.freestand.ranu.fsmark2.AppController;
 public class SharedPrefsHelper {
 
 
-    public static SharedPreferences mSharedPreferences = AppController.sharedPreferences;
+    public static SharedPreferences FSSharedPreferences = AppController.sharedPreferences;
 
 
     public static void put(String key, String value) {
-        mSharedPreferences.edit().putString(key, value).apply();
+        FSSharedPreferences.edit().putString(key, value).apply();
     }
 
     public static void put(String key, int value) {
-        mSharedPreferences.edit().putInt(key, value).apply();
+        FSSharedPreferences.edit().putInt(key, value).apply();
     }
 
     public static void put(String key, float value) {
-        mSharedPreferences.edit().putFloat(key, value).apply();
+        FSSharedPreferences.edit().putFloat(key, value).apply();
     }
 
     public static void put(String key, boolean value) {
-        mSharedPreferences.edit().putBoolean(key, value).apply();
+        FSSharedPreferences.edit().putBoolean(key, value).apply();
     }
 
     public static String get(String key, String defaultValue) {
-        return mSharedPreferences.getString(key, defaultValue);
+        return FSSharedPreferences.getString(key, defaultValue);
     }
 
     public static Integer get(String key, int defaultValue) {
-        return mSharedPreferences.getInt(key, defaultValue);
+        return FSSharedPreferences.getInt(key, defaultValue);
     }
 
     public static Float get(String key, float defaultValue) {
-        return mSharedPreferences.getFloat(key, defaultValue);
+        return FSSharedPreferences.getFloat(key, defaultValue);
     }
 
     public static Boolean get(String key, boolean defaultValue) {
-        return mSharedPreferences.getBoolean(key, defaultValue);
+        return FSSharedPreferences.getBoolean(key, defaultValue);
     }
 
     public static void deleteSavedData(String key) {
-        mSharedPreferences.edit().remove(key).apply();
+        FSSharedPreferences.edit().remove(key).apply();
     }
 }

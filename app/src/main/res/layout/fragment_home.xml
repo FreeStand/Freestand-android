@@ -11,10 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:text="> > > SWIPE TO COLLECT > > >"
-        android:background="@color/colorAccent"
+        android:background="@drawable/right_animation"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:layout_alignParentBottom="true"/>
+        android:clickable="true"
+        android:layout_alignParentBottom="true">
+
+    </Button>
 
     <RelativeLayout
         android:id="@+id/card"

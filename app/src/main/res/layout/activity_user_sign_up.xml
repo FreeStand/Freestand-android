@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bluey_grey"
+    tools:context="com.freestand.ranu.fsmark2.Activities.UserSignUP">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/constraintLayout2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp"
+        app:srcCompat="@drawable/logo_free_stand" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif"
+        android:gravity="center_horizontal"
+        android:letterSpacing="-0.0"
+        android:text="© Freestand Sampling Solutions  Private Limited"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        android:layout_marginBottom="5dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@+id/imageView"
+        android:layout_above="@+id/textView2"
+        android:background="@color/white"
+        android:layout_marginBottom="18dp"
+        android:layout_marginTop="28dp">
+
+        <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="53dp"
+        android:layout_marginTop="38dp"
+        app:srcCompat="@drawable/ic_cake" />
+
+        <TextView
+        android:layout_below="@id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="54dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:lineSpacingExtra="5sp"
+        android:text="Date of Birth"
+        android:textColor="#5674ff"
+        android:textSize="14sp"
+        android:id="@+id/dob_label"
+        android:textStyle="normal" />
+
+        <Spinner
+            android:layout_below="@+id/dob_label"
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="54dp"
+        android:layout_marginTop="18dp"/>
+
+
+        <ImageView
+        android:layout_below="@+id/spinner"
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="54dp"
+            android:layout_marginTop="30dp"
+        app:srcCompat="@drawable/ic_face" />
+
+
+        <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="54dp"
+        android:layout_below="@+id/imageView3"
+        android:fontFamily="sans-serif-medium"
+        android:lineSpacingExtra="5sp"
+        android:text="Interested in"
+        android:textColor="#5674ff"
+        android:textSize="14sp"
+        android:layout_marginTop="14dp"
+        android:textStyle="normal"/>
+
+
+        <CheckBox
+        android:layout_below="@id/textView3"
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="15dp"
+        android:text="CheckBox" />
+
+        <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="61dp"
+        android:layout_toRightOf="@id/checkBox"
+        android:layout_below="@id/textView3"
+        android:layout_marginTop="15dp"
+        android:text="CheckBox"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Done"
+            android:id="@+id/done"
+            android:layout_below="@id/checkBox"
+            android:layout_marginTop="15dp"
+            android:background="@color/blue"
+            android:textColor="@color/white"
+            android:layout_marginLeft="54dp"
+            android:layout_marginRight="54dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/done"
+            android:textColor="#000000"
+            android:layout_marginRight="54dp"
+            android:layout_marginLeft="54dp"
+            android:gravity="center"
+            android:text="By clicking done you confirm that the information provided by you is true."/>
+
+
+
+    </RelativeLayout>
+
+<!--<RelativeLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/imageView"-->
+        <!--android:layout_marginBottom="16dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:id="@+id/constraintLayout2">-->
+-->
+
+
+
+
+
+
+        <!--<android.support.constraint.ConstraintLayout-->
+            <!--android:id="@+id/constraintLayout"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginEnd="54dp"-->
+            <!--android:layout_marginStart="54dp"-->
+            <!--android:layout_marginTop="294dp"-->
+            <!--android:background="@color/blue"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintHorizontal_bias="0.0"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:layout_constraintVertical_bias="0.0">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="8dp"-->
+                <!--android:layout_marginEnd="8dp"-->
+                <!--android:layout_marginStart="8dp"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:fontFamily="sans-serif-medium"-->
+                <!--android:text="DONE"-->
+                <!--android:textColor="#ffffff"-->
+                <!--android:textSize="14sp"-->
+                <!--android:textStyle="normal"-->
+                <!--app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--</android.support.constraint.ConstraintLayout>-->
+
+        <!--<android.support.constraint.ConstraintLayout-->
+            <!--android:layout_width="352dp"-->
+            <!--android:layout_height="74dp"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:layout_constraintVertical_bias="1.0">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginEnd="54dp"-->
+                <!--android:layout_marginStart="54dp"-->
+                <!--android:layout_marginTop="18dp"-->
+                <!--android:fontFamily="sans-serif-condensed"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:lineSpacingExtra="4sp"-->
+                <!--android:text="By clicking done you confirm that the information provided by you is true."-->
+                <!--android:textColor="@color/dark_two"-->
+                <!--android:textSize="14sp"-->
+                <!--android:textStyle="normal"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+
+        <!--</android.support.constraint.ConstraintLayout>-->
+
+
+    <!--</RelativeLayout>-->
+</RelativeLayout>

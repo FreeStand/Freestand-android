@@ -8,114 +8,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:225537858800:android:fdc7a2873929db0e",
-        "android_client_info": {
-          "package_name": "com.example.ranu.fsmark3"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "225537858800-6vs2vuqvhr7nf0m0jpieua3lq6av52oj.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.ranu.fsmark3",
-            "certificate_hash": "187d114505091e0b343dc14896756e42c92a72ab"
-          }
-        },
-        {
-          "client_id": "225537858800-a1t932cf2rvj65qgiok2702kq4lifc0p.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDBSdg69oTam5hZlLSfcsDW8rgSQqHT54I"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "225537858800-a1t932cf2rvj65qgiok2702kq4lifc0p.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "225537858800-3j671gdhg67hnpu40mktk29ti2t4o1d5.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "freestand.dbManager"
-              }
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:225537858800:android:df27ad2510b93cf0",
-        "android_client_info": {
-          "package_name": "com.example.ranu.fsmark2"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "225537858800-99dnhserklvi5nph10ra4f0u7t6616j8.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.ranu.fsmark2",
-            "certificate_hash": "c7cd003d64a83ee23dae0a1c717d2cf6d6f6f2fe"
-          }
-        },
-        {
-          "client_id": "225537858800-a1t932cf2rvj65qgiok2702kq4lifc0p.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDBSdg69oTam5hZlLSfcsDW8rgSQqHT54I"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "225537858800-a1t932cf2rvj65qgiok2702kq4lifc0p.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "225537858800-3j671gdhg67hnpu40mktk29ti2t4o1d5.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "freestand.dbManager"
-              }
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:225537858800:android:24ba910d1ff604f2",
         "android_client_info": {
           "package_name": "com.freestand.ranu.fsmark2"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "225537858800-p3rmcgm65ug379sug8oup9nfpv8qdcvj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.freestand.ranu.fsmark2",
+            "certificate_hash": "226ad46b338ac2498d78565bf441abdfe27a6ed5"
+          }
+        },
         {
           "client_id": "225537858800-sm4itjq8blqjg2rkaijbqee3vvr4seel.apps.googleusercontent.com",
           "client_type": 1,

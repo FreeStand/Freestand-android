@@ -16,6 +16,8 @@ import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.freestand.ranu.fsmark2.R;
+import com.freestand.ranu.fsmark2.data.FirebaseDatabaseHelper;
+import com.freestand.ranu.fsmark2.data.sharedpf.SharedPrefsHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -23,6 +25,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.iid.FirebaseInstanceId;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class FacebookLoginActivity extends BaseActivity {
     CallbackManager callbackManager;
@@ -34,7 +40,6 @@ public class FacebookLoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //restore theme from set by splash screen
-        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         setLoginCallback();
@@ -52,10 +57,7 @@ public class FacebookLoginActivity extends BaseActivity {
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
 //        Log.e("result activity ", accessToken.getToken());
-        handleFacebookAccessToken(accessToken);
-
-        Intent intent = new Intent(FacebookLoginActivity.this, AfterLogin.class);
-        startActivity(intent);
+        SharedPrefsHelper.put("IS_LOGGED_IN", true);
     }
 
     @Override
@@ -71,6 +73,7 @@ public class FacebookLoginActivity extends BaseActivity {
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
+                        handleFacebookAccessToken(loginResult.getAccessToken());
                         Log.e("login result", loginResult.getAccessToken().getToken());
                     }
                     @Override
@@ -113,7 +116,6 @@ public class FacebookLoginActivity extends BaseActivity {
 
     private void handleFacebookAccessToken(AccessToken token) {
         Log.d("hello", "handleFacebookAccessToken:" + token);
-
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -123,6 +125,10 @@ public class FacebookLoginActivity extends BaseActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.e("hello ", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            Intent intent = new Intent(FacebookLoginActivity.this, LandingScreen.class);
+                            startActivity(intent);
+                            finish();
+                            completeSignIn();
                             Log.e("user id ", user.getUid());
                         } else {
                             // If sign in fails, display a message to the user.
@@ -130,10 +136,22 @@ public class FacebookLoginActivity extends BaseActivity {
                             Toast.makeText(FacebookLoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
-
-                        // ...
                     }
                 });
+    }
+
+    private void completeSignIn() {
+        Map<String, Object> userMainInfo = new HashMap<>();
+        userMainInfo.put("email", ""+mAuth.getCurrentUser().getEmail());
+        userMainInfo.put("name", mAuth.getCurrentUser().getDisplayName());
+        userMainInfo.put("photoURL", makePhotoUrl(AccessToken.getCurrentAccessToken().getUserId()));
+        userMainInfo.put("fcmToken", FirebaseInstanceId.getInstance().getToken());
+        FirebaseDatabaseHelper.getInstance().setValue(userMainInfo);
+        Log.e("user id " , AccessToken.getCurrentAccessToken().getUserId());
+    }
+
+    private String makePhotoUrl(@NonNull String fbId) {
+        return  "http://graph.facebook.com/" + fbId + "/picture?type=large";
     }
 
 }

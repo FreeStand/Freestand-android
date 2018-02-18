@@ -12,7 +12,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DatabaseHandler extends SQLiteOpenHelper {
+public abstract class DatabaseHandler extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
@@ -31,12 +31,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // Creating Tables
     @Override
-    public void onCreate(SQLiteDatabase db) {}
+    public abstract void onCreate(SQLiteDatabase db);
 
     // Upgrading database
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
-
+    public abstract void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion);
     /**
      * All CRUD(Create, Read, Update, Delete) Operations
      */

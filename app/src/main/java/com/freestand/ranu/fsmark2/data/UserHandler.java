@@ -15,6 +15,7 @@ import java.util.List;
  */
 
 public class UserHandler extends DatabaseHandler {
+
     private static final String TABLE_USER = "user";
     private static final String KEY_FCM_TOKEN = "fcm_token";
     private static final String KEY_NAME = "name";
@@ -24,9 +25,8 @@ public class UserHandler extends DatabaseHandler {
     private static final String KEY_GENDER = "gender";
     private static final String KEY_PHOTO_URL = "photo_url";
     private static final String KEY_PH_NO = "phone_number";
-    public UserHandler(Context context) {
-        super(context);
-    }
+
+    public UserHandler(Context context) {super(context);}
 
     @Override
     public void onCreate(SQLiteDatabase db) {

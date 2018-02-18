@@ -17,15 +17,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.facebook.login.LoginManager;
 import com.freestand.ranu.fsmark2.R;
 import com.freestand.ranu.fsmark2.customview.BottomNavigationViewHelper;
+import com.freestand.ranu.fsmark2.data.FirebaseDatabaseHelper;
 import com.freestand.ranu.fsmark2.data.UserHandler;
+import com.freestand.ranu.fsmark2.data.sharedpf.SharedPrefsHelper;
 import com.freestand.ranu.fsmark2.fragment.Alerts;
 import com.freestand.ranu.fsmark2.fragment.Coupon;
 import com.freestand.ranu.fsmark2.fragment.FAQ;
 import com.freestand.ranu.fsmark2.fragment.Home;
 import com.freestand.ranu.fsmark2.fragment.QRScanner;
 import com.google.firebase.iid.FirebaseInstanceId;
+
 
 public class LandingScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
@@ -57,7 +61,6 @@ public class LandingScreen extends AppCompatActivity
         Log.e("hello ", FirebaseInstanceId.getInstance().getToken());
         UserHandler userHandler = new UserHandler(this);
         movingInfo.setSelected(true);
-
     }
 
     @Override
@@ -102,12 +105,20 @@ public class LandingScreen extends AppCompatActivity
                 loadFragmentWithoutBottomBar(fragment);
                 drawer.closeDrawer(GravityCompat.START);
                 return true;
-            case R.id.contact_us:
+            case R.id.contact_us: {
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                         "mailto",getString(R.string.freestand_email), null));
                 emailIntent.putExtra(Intent.EXTRA_EMAIL, getString(R.string.freestand_email));
                 startActivity(Intent.createChooser(emailIntent, "Send Email..."));
-            case R.id.log_out:
+            }
+            case R.id.log_out: {
+                SharedPrefsHelper.put("IS_LOGGED_IN", false);
+                LoginManager.getInstance().logOut();
+                Intent intent = new Intent(this, FacebookLoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
         }
 
         return true;
@@ -139,6 +150,7 @@ public class LandingScreen extends AppCompatActivity
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
+        onNavigationItemSelected(bottomNavigationView.getMenu().getItem(0));
     }
 
 }
