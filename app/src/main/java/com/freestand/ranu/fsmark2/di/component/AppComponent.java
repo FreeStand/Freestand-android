@@ -11,6 +11,7 @@ import com.freestand.ranu.fsmark2.AppController;
 import com.freestand.ranu.fsmark2.FirebaseIDService;
 import com.freestand.ranu.fsmark2.data.sharedpf.SharedPrefsHelper;
 import com.freestand.ranu.fsmark2.di.module.AppModule;
+import com.freestand.ranu.fsmark2.di.module.NetModule;
 
 import javax.inject.Singleton;
 
@@ -30,4 +31,5 @@ public interface AppComponent {
     void inject(FacebookLoginActivity facebookLoginActivity);
     Application getApplicationInstance();
     SharedPrefsHelper sharedPrefsHelper();
+    NetComponent plusNetComponent (NetModule netModule);
 }

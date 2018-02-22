@@ -18,15 +18,19 @@ import com.freestand.ranu.fsmark2.data.model.FAQ.Faq;
 import com.freestand.ranu.fsmark2.data.model.alert.Alert;
 import com.freestand.ranu.fsmark2.data.network.rest.ApiClient;
 import com.freestand.ranu.fsmark2.data.network.rest.ApiInterface;
+import com.freestand.ranu.fsmark2.di.ComponentFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by prateek on 07/02/18.
@@ -35,6 +39,8 @@ import retrofit2.Response;
 public class FAQ extends Fragment{
     @BindView(R.id.rv_faq)
     RecyclerView rv_faq;
+    @Inject
+    Retrofit retrofitClient;
     private List<Faq> faqList = new ArrayList<>();
     private FaqAdapter faqAdapter;
     @Override
@@ -48,9 +54,8 @@ public class FAQ extends Fragment{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_faq, container, false);
         ButterKnife.bind(this, view);
+        ComponentFactory.getComponentFactory().getNetComponent().inject(this);
         getData();
-
-
         return view;
     }
 
@@ -66,7 +71,7 @@ public class FAQ extends Fragment{
 
     private void getData() {
         ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
+                retrofitClient.create(ApiInterface.class);
 
         Call<List<Faq>> call = apiService.getFaqs();
         call.enqueue(new Callback<List<Faq>>() {

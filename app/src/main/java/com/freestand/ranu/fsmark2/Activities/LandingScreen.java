@@ -25,6 +25,7 @@ import com.freestand.ranu.fsmark2.customview.BottomNavigationViewHelper;
 import com.freestand.ranu.fsmark2.data.FirebaseDatabaseHelper;
 import com.freestand.ranu.fsmark2.data.UserHandler;
 import com.freestand.ranu.fsmark2.data.sharedpf.SharedPrefsHelper;
+import com.freestand.ranu.fsmark2.di.ComponentFactory;
 import com.freestand.ranu.fsmark2.fragment.Alerts;
 import com.freestand.ranu.fsmark2.fragment.Coupon;
 import com.freestand.ranu.fsmark2.fragment.FAQ;
@@ -54,7 +55,7 @@ public class LandingScreen extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        AppController.getInstance().getAppComponent().inject(this);
+        ComponentFactory.getComponentFactory().getAppComponent(this.getApplication()).inject(this);
         Log.e("app ", appController.toString());
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);

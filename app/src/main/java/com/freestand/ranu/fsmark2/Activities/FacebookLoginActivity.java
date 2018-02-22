@@ -19,6 +19,7 @@ import com.freestand.ranu.fsmark2.AppController;
 import com.freestand.ranu.fsmark2.R;
 import com.freestand.ranu.fsmark2.data.FirebaseDatabaseHelper;
 import com.freestand.ranu.fsmark2.data.sharedpf.SharedPrefsHelper;
+import com.freestand.ranu.fsmark2.di.ComponentFactory;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -45,7 +46,7 @@ public class FacebookLoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         //restore theme from set by splash screen
         super.onCreate(savedInstanceState);
-        AppController.getInstance().getAppComponent().inject(this);
+        ComponentFactory.getComponentFactory().getAppComponent(this.getApplication()).inject(this);
         mAuth = FirebaseAuth.getInstance();
         setLoginCallback();
         setProfileTracker();

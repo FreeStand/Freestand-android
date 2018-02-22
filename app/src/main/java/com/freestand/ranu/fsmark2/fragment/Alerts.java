@@ -16,24 +16,32 @@ import com.freestand.ranu.fsmark2.adapter.AlertAdapter;
 import com.freestand.ranu.fsmark2.data.model.alert.Alert;
 import com.freestand.ranu.fsmark2.data.network.rest.ApiClient;
 import com.freestand.ranu.fsmark2.data.network.rest.ApiInterface;
+import com.freestand.ranu.fsmark2.di.ComponentFactory;
+import com.freestand.ranu.fsmark2.di.NetScope;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by prateek on 14/1/18.
  */
 
 public class Alerts extends Fragment{
+    @Inject @NetScope
+    Retrofit retrofitClient;
     @BindView(R.id.rv_alerts) RecyclerView rv_alerts;
     private List<Alert> alertList = new ArrayList<>();
     private AlertAdapter alertAdapter;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,9 +53,8 @@ public class Alerts extends Fragment{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_alerts, container, false);
         ButterKnife.bind(this, view);
+        ComponentFactory.getComponentFactory().getNetComponent().inject(this);
         getData();
-        
-
         return view;
     }
 
@@ -63,7 +70,7 @@ public class Alerts extends Fragment{
 
     private void getData() {
         ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
+                retrofitClient.create(ApiInterface.class);
 
         Call<List<Alert>> call = apiService.getAlerts();
         call.enqueue(new Callback<List<Alert>>() {

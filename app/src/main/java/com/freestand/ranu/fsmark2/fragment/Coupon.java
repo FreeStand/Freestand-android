@@ -18,6 +18,7 @@ import com.freestand.ranu.fsmark2.data.model.CouponItem;
 import com.freestand.ranu.fsmark2.data.model.alert.Alert;
 import com.freestand.ranu.fsmark2.data.network.rest.ApiClient;
 import com.freestand.ranu.fsmark2.data.network.rest.ApiInterface;
+import com.freestand.ranu.fsmark2.di.ComponentFactory;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -25,11 +26,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by prateek on 04/02/18.
@@ -38,6 +42,8 @@ import retrofit2.Response;
 public class Coupon extends Fragment {
     @BindView(R.id.rv_coupons)
     RecyclerView rv_coupons;
+    @Inject
+    Retrofit retrofitClient;
     private List<CouponItem> couponItemList = new ArrayList<>();
     private CouponAdapter couponAdapter;
     @Override
@@ -51,6 +57,7 @@ public class Coupon extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_coupon, container, false);
         ButterKnife.bind(this, view);
+        ComponentFactory.getComponentFactory().getNetComponent().inject(this);
         getData();
 
 
@@ -68,8 +75,7 @@ public class Coupon extends Fragment {
     }
 
     private void getData() {
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
+        ApiInterface apiService = retrofitClient.create(ApiInterface.class);
         Map<String, String> headers = new HashMap<>();
         headers.put("uid", FirebaseAuth.getInstance().getUid());
         Call<List<CouponItem>> call = apiService.getCoupons(headers);

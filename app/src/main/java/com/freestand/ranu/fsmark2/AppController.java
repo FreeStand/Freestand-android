@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.stetho.Stetho;
+import com.freestand.ranu.fsmark2.di.ComponentFactory;
 import com.freestand.ranu.fsmark2.di.component.AppComponent;
 import com.freestand.ranu.fsmark2.di.component.DaggerAppComponent;
 import com.freestand.ranu.fsmark2.di.module.AppModule;
@@ -30,10 +31,8 @@ public class AppController extends Application {
 //    public static final String MyPREFERENCES = Constants.FREESTAND_PREFS ;
     private AppComponent appComponent;
 
-    @Inject AppController () {
-        setAppComponent();
-    }
-
+    @Inject
+    public AppController(){}
 
     @Override
     public void onCreate() {
@@ -45,13 +44,7 @@ public class AppController extends Application {
         Fabric.with(this, new Crashlytics());
         Stetho.initializeWithDefaults(this);
         initilaiseFireBaseDb();
-    }
-
-    private void setAppComponent() {
-        appComponent = DaggerAppComponent.builder()
-                // list of modules that are part of this component need to be created here too
-                .appModule(new AppModule(this))// This also corres
-                .build();
+        ComponentFactory.getComponentFactory().getAppComponent(this);
     }
 
     private void initilaiseFireBaseDb() {}
@@ -70,9 +63,4 @@ public class AppController extends Application {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
-
-    public AppComponent getAppComponent() {
-        return appComponent;
-    }
-
 }

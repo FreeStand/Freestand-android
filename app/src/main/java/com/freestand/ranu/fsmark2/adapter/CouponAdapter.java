@@ -23,6 +23,8 @@ import com.freestand.ranu.fsmark2.data.model.alert.Alert;
 import com.freestand.ranu.fsmark2.data.model.checkqr.CheckQr;
 import com.freestand.ranu.fsmark2.data.network.rest.ApiClient;
 import com.freestand.ranu.fsmark2.data.network.rest.ApiInterface;
+import com.freestand.ranu.fsmark2.di.ComponentFactory;
+import com.freestand.ranu.fsmark2.di.NetScope;
 import com.freestand.ranu.fsmark2.fragment.Coupon;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
@@ -33,18 +35,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by prateek on 11/02/18.
  */
 public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.MyViewHolder> {
-
+    @Inject @NetScope
+    Retrofit retrofit;
     private List<CouponItem> couponItemList = new ArrayList<>();
     private Context context;
+
+    public CouponAdapter() {
+        ComponentFactory.getComponentFactory().getNetComponent().inject(this);
+    }
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView title, couponValue, description, showCopied, clickCoupon;
         ImageView couponImage;
@@ -63,7 +73,6 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.MyViewHold
             couponCard = (RelativeLayout)view.findViewById(R.id.coupon_card);
             context = view.getContext();
             attachClickListener();
-
         }
 
         private void attachClickListener() {
@@ -72,7 +81,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.MyViewHold
 
         private void getGeneralData(String brand, String couponID) {
             ApiInterface apiService =
-                    ApiClient.getClient().create(ApiInterface.class);
+                    retrofit.create(ApiInterface.class);
             Map map = new HashMap();
             map.put("uid", FirebaseAuth.getInstance().getUid());
             map.put("brand", brand);
@@ -104,7 +113,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.MyViewHold
         }
         private void getUniqueData(String brand, String couponID, String couponValue) {
             ApiInterface apiService =
-                    ApiClient.getClient().create(ApiInterface.class);
+                    retrofit.create(ApiInterface.class);
             Map map = new HashMap();
             map.put("uid", FirebaseAuth.getInstance().getUid());
             map.put("brand", brand);

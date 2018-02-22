@@ -5,6 +5,7 @@ import android.util.Log;
 import com.freestand.ranu.fsmark2.data.UserHandler;
 import com.freestand.ranu.fsmark2.data.model.User;
 import com.freestand.ranu.fsmark2.data.sharedpf.SharedPrefsHelper;
+import com.freestand.ranu.fsmark2.di.ComponentFactory;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
@@ -19,7 +20,7 @@ public class FirebaseIDService extends FirebaseInstanceIdService {
     @Inject SharedPrefsHelper sharedPrefsHelper;
     @Override
     public void onTokenRefresh() {
-        AppController.getInstance().getAppComponent().inject(this);
+        ComponentFactory.getComponentFactory().getAppComponent(this.getApplication()).inject(this);
         // Get updated InstanceID token.
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, "Refreshed token: " + refreshedToken);

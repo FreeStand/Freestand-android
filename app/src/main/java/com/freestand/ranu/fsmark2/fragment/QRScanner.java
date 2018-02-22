@@ -15,6 +15,7 @@ import com.freestand.ranu.fsmark2.data.model.alert.Alert;
 import com.freestand.ranu.fsmark2.data.model.checkqr.CheckQr;
 import com.freestand.ranu.fsmark2.data.network.rest.ApiClient;
 import com.freestand.ranu.fsmark2.data.network.rest.ApiInterface;
+import com.freestand.ranu.fsmark2.di.ComponentFactory;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.zxing.Result;
@@ -24,6 +25,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import info.androidhive.barcode.BarcodeReader;
@@ -31,6 +34,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Created by prateek on 14/1/18.
@@ -39,6 +43,8 @@ import retrofit2.Response;
 public class QRScanner extends Fragment implements ZXingScannerView.ResultHandler{
 
     @BindView(R.id.scan_view) ZXingScannerView mScannerView;
+    @Inject
+    Retrofit retrofitClient;
     String surveyId;
     String gender;
     String location;
@@ -50,6 +56,7 @@ public class QRScanner extends Fragment implements ZXingScannerView.ResultHandle
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_qr_scanner, container, false);
         ButterKnife.bind(this, view);
+        ComponentFactory.getComponentFactory().getNetComponent().inject(this);
         getData();
         return view;
     }
@@ -73,8 +80,7 @@ public class QRScanner extends Fragment implements ZXingScannerView.ResultHandle
     }
 
     private void getData() {
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
+        ApiInterface apiService = retrofitClient.create(ApiInterface.class);
         Map map = new HashMap();
         map.put("uid", FirebaseAuth.getInstance().getUid());
         map.put("lid", "MAIT");
