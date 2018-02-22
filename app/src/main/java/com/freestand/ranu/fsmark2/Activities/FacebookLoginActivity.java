@@ -15,6 +15,7 @@ import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.freestand.ranu.fsmark2.AppController;
 import com.freestand.ranu.fsmark2.R;
 import com.freestand.ranu.fsmark2.data.FirebaseDatabaseHelper;
 import com.freestand.ranu.fsmark2.data.sharedpf.SharedPrefsHelper;
@@ -30,7 +31,10 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 public class FacebookLoginActivity extends BaseActivity {
+    @Inject SharedPrefsHelper sharedPrefsHelper;
     CallbackManager callbackManager;
     AccessToken accessToken;
     AccessTokenTracker accessTokenTracker;
@@ -41,6 +45,7 @@ public class FacebookLoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         //restore theme from set by splash screen
         super.onCreate(savedInstanceState);
+        AppController.getInstance().getAppComponent().inject(this);
         mAuth = FirebaseAuth.getInstance();
         setLoginCallback();
         setProfileTracker();
@@ -57,7 +62,7 @@ public class FacebookLoginActivity extends BaseActivity {
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
 //        Log.e("result activity ", accessToken.getToken());
-        SharedPrefsHelper.put("IS_LOGGED_IN", true);
+        sharedPrefsHelper.put("IS_LOGGED_IN", true);
     }
 
     @Override

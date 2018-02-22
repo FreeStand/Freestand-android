@@ -1,5 +1,6 @@
 package com.freestand.ranu.fsmark2.Activities;
 
+import android.app.Application;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.facebook.login.LoginManager;
+import com.freestand.ranu.fsmark2.AppController;
 import com.freestand.ranu.fsmark2.R;
 import com.freestand.ranu.fsmark2.customview.BottomNavigationViewHelper;
 import com.freestand.ranu.fsmark2.data.FirebaseDatabaseHelper;
@@ -30,11 +32,15 @@ import com.freestand.ranu.fsmark2.fragment.Home;
 import com.freestand.ranu.fsmark2.fragment.QRScanner;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import javax.inject.Inject;
+
 
 public class LandingScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawer;
     TextView movingInfo;
+    @Inject AppController appController;
+    @Inject SharedPrefsHelper sharedPrefsHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,23 +50,27 @@ public class LandingScreen extends AppCompatActivity
 
         movingInfo = (TextView)findViewById(R.id.moving_info);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+        AppController.getInstance().getAppComponent().inject(this);
+        Log.e("app ", appController.toString());
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
         setBottomBar();
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.logo_white);
-        getSupportActionBar().setTitle("");
+        setActionBar();
         Log.e("hello ", FirebaseInstanceId.getInstance().getToken());
         UserHandler userHandler = new UserHandler(this);
         movingInfo.setSelected(true);
+    }
+
+    private void setActionBar() {
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.logo_white);
+        getSupportActionBar().setTitle("");
     }
 
     @Override
@@ -112,7 +122,7 @@ public class LandingScreen extends AppCompatActivity
                 startActivity(Intent.createChooser(emailIntent, "Send Email..."));
             }
             case R.id.log_out: {
-                SharedPrefsHelper.put("IS_LOGGED_IN", false);
+                sharedPrefsHelper.put("IS_LOGGED_IN", false);
                 LoginManager.getInstance().logOut();
                 Intent intent = new Intent(this, FacebookLoginActivity.class);
                 startActivity(intent);
