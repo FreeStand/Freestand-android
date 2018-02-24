@@ -12,11 +12,8 @@ import android.view.ViewGroup;
 
 import com.freestand.ranu.fsmark2.AppController;
 import com.freestand.ranu.fsmark2.R;
-import com.freestand.ranu.fsmark2.adapter.AlertAdapter;
 import com.freestand.ranu.fsmark2.adapter.CouponAdapter;
 import com.freestand.ranu.fsmark2.data.model.CouponItem;
-import com.freestand.ranu.fsmark2.data.model.alert.Alert;
-import com.freestand.ranu.fsmark2.data.network.rest.ApiClient;
 import com.freestand.ranu.fsmark2.data.network.rest.ApiInterface;
 import com.freestand.ranu.fsmark2.di.ComponentFactory;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,13 +36,14 @@ import retrofit2.Retrofit;
  * Created by prateek on 04/02/18.
  */
 
-public class Coupon extends Fragment {
+public class Coupon extends BaseFragment {
     @BindView(R.id.rv_coupons)
     RecyclerView rv_coupons;
     @Inject
     Retrofit retrofitClient;
     private List<CouponItem> couponItemList = new ArrayList<>();
     private CouponAdapter couponAdapter;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,14 +52,28 @@ public class Coupon extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_coupon, container, false);
-        ButterKnife.bind(this, view);
-        ComponentFactory.getComponentFactory().getNetComponent().inject(this);
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    int setViewId() {
+        return R.layout.fragment_coupon;
+    }
+
+    @Override
+    void onFragmentCreated() {
         getData();
+    }
 
+    @Override
+    void bindView(View view) {
+        ButterKnife.bind(this, view);
 
-        return view;
+    }
+
+    @Override
+    void getComponentFactory() {
+        ComponentFactory.getComponentFactory().getNetComponent().inject(this);
     }
 
     private void setRecyclerView() {
@@ -82,12 +94,9 @@ public class Coupon extends Fragment {
         call.enqueue(new Callback<List<CouponItem>>() {
             @Override
             public void onResponse(Call<List<CouponItem>>call, Response<List<CouponItem>> response) {
-                Log.e("response ", response.toString());
                 couponItemList = response.body();
                 setRecyclerView();
-                Log.d("hello ", "Number of alerts received: " + couponItemList.size());
                 couponAdapter.notifyDataSetChanged();
-                Log.e("list ", couponItemList.get(0).getBrandName()+ " hey");
             }
 
             @Override

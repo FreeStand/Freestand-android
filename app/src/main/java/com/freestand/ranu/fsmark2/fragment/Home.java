@@ -19,7 +19,7 @@ import com.freestand.ranu.fsmark2.R;
  * Created by prateek on 14/1/18.
  */
 
-public class Home extends Fragment {
+public class Home extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,5 +54,25 @@ public class Home extends Fragment {
 
 
         return view;
+    }
+
+    @Override
+    int setViewId() {
+        return 0;
+    }
+
+    @Override
+    void onFragmentCreated() {
+
+    }
+
+    @Override
+    void bindView(View view) {
+
+    }
+
+    @Override
+    void getComponentFactory() {
+
     }
 }

@@ -1,6 +1,5 @@
 package com.freestand.ranu.fsmark2.adapter;
 
-import android.animation.ValueAnimator;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
@@ -19,13 +18,9 @@ import com.freestand.ranu.fsmark2.Activities.FeedbackScreen;
 import com.freestand.ranu.fsmark2.R;
 import com.freestand.ranu.fsmark2.data.model.CouponItem;
 import com.freestand.ranu.fsmark2.data.model.CouponItemResponse;
-import com.freestand.ranu.fsmark2.data.model.alert.Alert;
-import com.freestand.ranu.fsmark2.data.model.checkqr.CheckQr;
-import com.freestand.ranu.fsmark2.data.network.rest.ApiClient;
 import com.freestand.ranu.fsmark2.data.network.rest.ApiInterface;
 import com.freestand.ranu.fsmark2.di.ComponentFactory;
 import com.freestand.ranu.fsmark2.di.NetScope;
-import com.freestand.ranu.fsmark2.fragment.Coupon;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 

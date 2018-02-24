@@ -12,11 +12,8 @@ import android.view.ViewGroup;
 
 import com.freestand.ranu.fsmark2.AppController;
 import com.freestand.ranu.fsmark2.R;
-import com.freestand.ranu.fsmark2.adapter.AlertAdapter;
 import com.freestand.ranu.fsmark2.adapter.FaqAdapter;
 import com.freestand.ranu.fsmark2.data.model.FAQ.Faq;
-import com.freestand.ranu.fsmark2.data.model.alert.Alert;
-import com.freestand.ranu.fsmark2.data.network.rest.ApiClient;
 import com.freestand.ranu.fsmark2.data.network.rest.ApiInterface;
 import com.freestand.ranu.fsmark2.di.ComponentFactory;
 
@@ -36,7 +33,7 @@ import retrofit2.Retrofit;
  * Created by prateek on 07/02/18.
  */
 
-public class FAQ extends Fragment{
+public class FAQ extends BaseFragment{
     @BindView(R.id.rv_faq)
     RecyclerView rv_faq;
     @Inject
@@ -52,11 +49,27 @@ public class FAQ extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_faq, container, false);
-        ButterKnife.bind(this, view);
-        ComponentFactory.getComponentFactory().getNetComponent().inject(this);
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    int setViewId() {
+        return R.layout.fragment_faq;
+    }
+
+    @Override
+    void onFragmentCreated() {
         getData();
-        return view;
+    }
+
+    @Override
+    void bindView(View view) {
+        ButterKnife.bind(this, view);
+    }
+
+    @Override
+    void getComponentFactory() {
+        ComponentFactory.getComponentFactory().getNetComponent().inject(this);
     }
 
     private void setRecyclerView() {
@@ -77,12 +90,9 @@ public class FAQ extends Fragment{
         call.enqueue(new Callback<List<Faq>>() {
             @Override
             public void onResponse(Call<List<Faq>>call, Response<List<Faq>> response) {
-                Log.e("response ", response.toString());
                 faqList = response.body();
                 setRecyclerView();
-                Log.d("hello ", "Number of alerts received: " + faqList.size());
                 faqAdapter.notifyDataSetChanged();
-                Log.e("list ", faqList.get(0).getAnswer()+ " hey");
             }
 
             @Override

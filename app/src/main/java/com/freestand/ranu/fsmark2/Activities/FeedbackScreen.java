@@ -60,8 +60,6 @@ public class FeedbackScreen extends AppCompatActivity implements View.OnClickLis
         totalNoOfQues = questionList.size();
 //        progressBar.setMax(totalNoOfQues);
         updateData(currentPage);
-
-
     }
 
     private void attachClickListener() {
