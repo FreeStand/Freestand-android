@@ -6,6 +6,7 @@ import com.freestand.ranu.fsmark2.di.module.NetModule;
 import com.freestand.ranu.fsmark2.fragment.Alerts;
 import com.freestand.ranu.fsmark2.fragment.Coupon;
 import com.freestand.ranu.fsmark2.fragment.FAQ;
+import com.freestand.ranu.fsmark2.fragment.Home;
 import com.freestand.ranu.fsmark2.fragment.QRScanner;
 
 import dagger.Subcomponent;
@@ -22,4 +23,5 @@ public interface NetComponent {
     void inject(FAQ faq);
     void inject(Coupon coupon);
     void inject(QRScanner qrScanner);
-}
+    void inject(Home home)
+;}

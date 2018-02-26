@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.freestand.ranu.fsmark2.AppController;
 import com.freestand.ranu.fsmark2.R;
 import com.freestand.ranu.fsmark2.adapter.CouponAdapter;
+import com.freestand.ranu.fsmark2.common.Utility;
 import com.freestand.ranu.fsmark2.data.model.CouponItem;
 import com.freestand.ranu.fsmark2.data.network.rest.ApiInterface;
 import com.freestand.ranu.fsmark2.di.ComponentFactory;
@@ -62,6 +63,7 @@ public class Coupon extends BaseFragment {
 
     @Override
     void onFragmentCreated() {
+        setRecyclerView();
         getData();
     }
 
@@ -77,16 +79,15 @@ public class Coupon extends BaseFragment {
     }
 
     private void setRecyclerView() {
-
         couponAdapter= new CouponAdapter(couponItemList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(AppController.getInstance());
         rv_coupons.setLayoutManager(mLayoutManager);
         rv_coupons.setItemAnimator(new DefaultItemAnimator());
         rv_coupons.setAdapter(couponAdapter);
-
     }
 
     private void getData() {
+        Utility.DialogClass.showPleaseWait(getContext(), "Loading. Please wait...");
         ApiInterface apiService = retrofitClient.create(ApiInterface.class);
         Map<String, String> headers = new HashMap<>();
         headers.put("uid", FirebaseAuth.getInstance().getUid());
@@ -94,15 +95,16 @@ public class Coupon extends BaseFragment {
         call.enqueue(new Callback<List<CouponItem>>() {
             @Override
             public void onResponse(Call<List<CouponItem>>call, Response<List<CouponItem>> response) {
-                couponItemList = response.body();
-                setRecyclerView();
+                couponItemList.clear();
+                couponItemList.addAll(response.body());
                 couponAdapter.notifyDataSetChanged();
+                Utility.DialogClass.dismissPleaseWait();
             }
 
             @Override
             public void onFailure(Call<List<CouponItem>>call, Throwable t) {
                 // Log error here since request failed
-                Log.e(" ", t.toString());
+                Utility.DialogClass.dismissPleaseWait();
             }
         });
 

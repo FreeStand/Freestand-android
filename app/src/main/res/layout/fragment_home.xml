@@ -57,15 +57,28 @@
                 android:padding="5dp"/>
 
         </LinearLayout>
-
-        <android.support.v7.widget.RecyclerView
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_below="@+id/linearLayout2"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentBottom="true">
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rv_products"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="Message To display"
+                android:id="@+id/tv_message"/>
+        </FrameLayout>
     </RelativeLayout>
 
 

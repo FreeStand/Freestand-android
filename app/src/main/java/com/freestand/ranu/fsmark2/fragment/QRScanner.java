@@ -37,12 +37,8 @@ import retrofit2.Retrofit;
 public class QRScanner extends BaseFragment implements ZXingScannerView.ResultHandler{
 
     @BindView(R.id.scan_view) ZXingScannerView mScannerView;
-    @Inject
-    Retrofit retrofitClient;
+    @Inject Retrofit retrofitClient;
     String surveyId;
-    String gender;
-    String location;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -105,6 +101,7 @@ public class QRScanner extends BaseFragment implements ZXingScannerView.ResultHa
                 if(checkQr.getStatus().equals("valid")) {
                     Intent intent = new Intent(getActivity(), FeedbackScreen.class);
                     intent.putExtra("question_list", (Serializable) checkQr.getDict().getQuestions());
+                    intent.putExtra("direction", "com.freestand.ranu.fsmark2.Activities.Welcome");
                     startActivity(intent);
                 }
                 Log.d("hello ", "Number of alerts received: " + response.toString());

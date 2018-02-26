@@ -16,10 +16,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
 import com.freestand.ranu.fsmark2.AppController;
+import com.freestand.ranu.fsmark2.Constants;
 import com.freestand.ranu.fsmark2.R;
 import com.freestand.ranu.fsmark2.customview.BottomNavigationViewHelper;
 import com.freestand.ranu.fsmark2.data.FirebaseDatabaseHelper;
@@ -31,9 +34,15 @@ import com.freestand.ranu.fsmark2.fragment.Coupon;
 import com.freestand.ranu.fsmark2.fragment.FAQ;
 import com.freestand.ranu.fsmark2.fragment.Home;
 import com.freestand.ranu.fsmark2.fragment.QRScanner;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import javax.inject.Inject;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class LandingScreen extends AppCompatActivity
@@ -42,6 +51,8 @@ public class LandingScreen extends AppCompatActivity
     TextView movingInfo;
     @Inject AppController appController;
     @Inject SharedPrefsHelper sharedPrefsHelper;
+    CircleImageView profileImage ;
+    TextView userName, email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,16 +67,26 @@ public class LandingScreen extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         ComponentFactory.getComponentFactory().getAppComponent(this.getApplication()).inject(this);
-        Log.e("app ", appController.toString());
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        View hView =  navigationView.getHeaderView(0);
+        profileImage = (CircleImageView) hView.findViewById(R.id.profile_image);
+        userName = (TextView) hView.findViewById(R.id.name);
+        email = (TextView) hView.findViewById(R.id.email);
         setBottomBar();
         setActionBar();
         Log.e("hello ", FirebaseInstanceId.getInstance().getToken());
         UserHandler userHandler = new UserHandler(this);
+        setUserProfile();
         movingInfo.setSelected(true);
+    }
+
+    private void setUserProfile() {
+//        String url = FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString();
+        String url = sharedPrefsHelper.get(Constants.USER_PHOTO_URL, "");
+        Picasso.with(this).load(url).into(profileImage);
+        userName.setText(sharedPrefsHelper.get(Constants.USER_NAME, ""));
+        email.setText(sharedPrefsHelper.get(Constants.USER_EMAIL, ""));
     }
 
     private void setActionBar() {

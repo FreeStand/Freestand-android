@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.freestand.ranu.fsmark2.AppController;
 import com.freestand.ranu.fsmark2.R;
 import com.freestand.ranu.fsmark2.adapter.AlertAdapter;
+import com.freestand.ranu.fsmark2.common.Utility;
 import com.freestand.ranu.fsmark2.data.model.alert.Alert;
 import com.freestand.ranu.fsmark2.data.network.rest.ApiInterface;
 import com.freestand.ranu.fsmark2.di.ComponentFactory;
@@ -34,7 +35,7 @@ import retrofit2.Retrofit;
  * Created by prateek on 14/1/18.
  */
 
-public class Alerts extends Fragment{
+public class Alerts extends BaseFragment{
     @Inject @NetScope
     Retrofit retrofitClient;
     @BindView(R.id.rv_alerts) RecyclerView rv_alerts;
@@ -49,46 +50,58 @@ public class Alerts extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_alerts, container, false);
-        ButterKnife.bind(this, view);
-        ComponentFactory.getComponentFactory().getNetComponent().inject(this);
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    int setViewId() {
+        return R.layout.fragment_alerts;
+    }
+
+    @Override
+    void onFragmentCreated() {
+        setRecyclerView();
         getData();
-        return view;
+    }
+
+    @Override
+    void bindView(View view) {
+        ButterKnife.bind(this, view);
+    }
+
+    @Override
+    void getComponentFactory() {
+        ComponentFactory.getComponentFactory().getNetComponent().inject(this);
+
     }
 
     private void setRecyclerView() {
-
         alertAdapter= new AlertAdapter(alertList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(AppController.getInstance());
         rv_alerts.setLayoutManager(mLayoutManager);
         rv_alerts.setItemAnimator(new DefaultItemAnimator());
         rv_alerts.setAdapter(alertAdapter);
-
     }
 
     private void getData() {
+        Utility.DialogClass.showPleaseWait(getContext(), "Loading. Please wait...");
         ApiInterface apiService =
                 retrofitClient.create(ApiInterface.class);
-
         Call<List<Alert>> call = apiService.getAlerts();
         call.enqueue(new Callback<List<Alert>>() {
             @Override
             public void onResponse(Call<List<Alert>>call, Response<List<Alert>> response) {
-                Log.e("response ", response.toString());
-                alertList = response.body();
-                setRecyclerView();
-                Log.d("hello ", "Number of alerts received: " + alertList.size());
+                alertList.clear();
+                alertList.addAll(response.body());
                 alertAdapter.notifyDataSetChanged();
-                Log.e("list ", alertList.get(0).getDate()+ " hey");
+                Utility.DialogClass.dismissPleaseWait();
             }
-
             @Override
             public void onFailure(Call<List<Alert>>call, Throwable t) {
                 // Log error here since request failed
                 Log.e(" ", t.toString());
+                Utility.DialogClass.dismissPleaseWait();
             }
         });
-
     }
 }

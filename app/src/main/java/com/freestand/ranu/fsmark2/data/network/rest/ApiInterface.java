@@ -8,6 +8,7 @@ import com.freestand.ranu.fsmark2.data.model.CouponItemResponse;
 import com.freestand.ranu.fsmark2.data.model.FAQ.Faq;
 import com.freestand.ranu.fsmark2.data.model.alert.Alert;
 import com.freestand.ranu.fsmark2.data.model.checkqr.CheckQr;
+import com.freestand.ranu.fsmark2.data.model.home.HomeData;
 
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,8 @@ public interface ApiInterface {
     Call<List<Faq>> getFaqs();
 
 
+    @GET("newHome")
+    Call<HomeData> getHomeData(@QueryMap Map<String, String> params);
 
 
 //    @GET("movie/{id}")

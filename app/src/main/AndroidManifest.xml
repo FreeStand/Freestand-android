@@ -12,7 +12,7 @@
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.FacebookLoginActivity"></activity>
+        <activity android:name=".Activities.FacebookLoginActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -55,20 +55,21 @@
         <activity
             android:name=".Activities.LandingScreen"
             android:label="@string/title_activity_screen_landing"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
             android:name=".Activities.MainDeciderActivity"
             android:noHistory="true"
             android:theme="@style/splashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.UserSignUP"
-            android:theme="@style/AppTheme.NoActionBar.Grey.Statusbar">
-
-        </activity>
+        <activity
+            android:name=".Activities.UserSignUP"
+            android:theme="@style/AppTheme.NoActionBar.Grey.Statusbar"></activity>
+        <activity android:name=".Activities.Welcome"></activity>
     </application>
 
 </manifest>

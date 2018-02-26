@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
     tools:context="com.freestand.ranu.fsmark2.Activities.FeedbackScreen">
 
     <ProgressBar
@@ -75,63 +74,127 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.988">
 
-        <RadioGroup
-            android:id="@+id/radiogroup"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:orientation="vertical" >
-            <RadioButton android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioGroup
+                android:visibility="gone"
+                android:id="@+id/radio_group"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="option1"
-                android:id="@+id/option1"
-                android:padding="5dp"
-                android:layout_gravity="center"/>
-            <RadioButton android:layout_width="match_parent"
-                android:padding="5dp"
-                android:layout_height="wrap_content"
-                android:text="option2"
-                android:id="@+id/option2"
-                android:layout_gravity="center"/>
-            <RadioButton android:layout_width="match_parent"
-                android:padding="5dp"
-                android:layout_height="wrap_content"
-                android:text="option3"
-                android:id="@+id/option3"
-                android:layout_gravity="center"/>
-            <RadioButton android:layout_width="match_parent"
-                android:padding="5dp"
-                android:layout_height="wrap_content"
-                android:text="option4"
-                android:id="@+id/option4"
-                android:layout_gravity="center"/>
-            <RadioButton android:layout_width="match_parent"
-                android:padding="5dp"
-                android:layout_height="wrap_content"
-                android:text="option5"
-                android:id="@+id/option5"
-                android:layout_gravity="center"/>
-            <RadioButton android:layout_width="match_parent"
-                android:padding="5dp"
-                android:layout_height="wrap_content"
-                android:text="option6"
-                android:id="@+id/option6"
-                android:layout_gravity="center"/>
-            <RadioButton android:layout_width="match_parent"
-                android:padding="5dp"
-                android:layout_height="wrap_content"
-                android:text="option7"
-                android:id="@+id/option7"
-                android:layout_gravity="center"/>
-            <RadioButton android:layout_width="match_parent"
-                android:padding="5dp"
-                android:layout_height="wrap_content"
-                android:text="option8"
-                android:id="@+id/option8"
-                android:layout_gravity="center"/>
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:orientation="vertical" >
+                <RadioButton android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="option1"
+                    android:id="@+id/option1"
+                    android:padding="10dp"
+                    android:layout_gravity="center"/>
+                <RadioButton android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="option2"
+                    android:id="@+id/option2"
+                    android:layout_gravity="center"/>
+                <RadioButton android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="option3"
+                    android:id="@+id/option3"
+                    android:layout_gravity="center"/>
+                <RadioButton android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="option4"
+                    android:id="@+id/option4"
+                    android:layout_gravity="center"/>
+                <RadioButton android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="option5"
+                    android:id="@+id/option5"
+                    android:layout_gravity="center"/>
+                <RadioButton android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="option6"
+                    android:id="@+id/option6"
+                    android:layout_gravity="center"/>
+                <RadioButton android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="option7"
+                    android:id="@+id/option7"
+                    android:layout_gravity="center"/>
+                <RadioButton android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="option8"
+                    android:id="@+id/option8"
+                    android:layout_gravity="center"/>
+            </RadioGroup>
 
-        </RadioGroup>
+            <LinearLayout
+                android:id="@+id/checkBox_group"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <CheckBox android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="option1"
+                    android:id="@+id/option_c1"
+                    android:layout_gravity="center"/>
+
+                <CheckBox android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="option2"
+                    android:id="@+id/option_c2"
+                    android:layout_gravity="center"/>
+
+                <CheckBox android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="option3"
+                    android:id="@+id/option_c3"
+                    android:layout_gravity="center"/>
+                <CheckBox android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="option4"
+                    android:id="@+id/option_c4"
+                    android:layout_gravity="center"/>
+                <CheckBox android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="option5"
+                    android:id="@+id/option_c5"
+                    android:layout_gravity="center"/>
+                <CheckBox android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="option6"
+                    android:id="@+id/option_c6"
+                    android:layout_gravity="center"/>
+                <CheckBox android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="option7"
+                    android:id="@+id/option_c7"
+                    android:layout_gravity="center"/>
+                <CheckBox android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="option8"
+                    android:id="@+id/option_c8"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+        </FrameLayout>
+
 
 
 
@@ -148,10 +211,16 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Next"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="@color/alert_green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </android.support.constraint.ConstraintLayout>

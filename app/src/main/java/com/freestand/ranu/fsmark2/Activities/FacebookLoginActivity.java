@@ -16,6 +16,7 @@ import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.freestand.ranu.fsmark2.AppController;
+import com.freestand.ranu.fsmark2.Constants;
 import com.freestand.ranu.fsmark2.R;
 import com.freestand.ranu.fsmark2.data.FirebaseDatabaseHelper;
 import com.freestand.ranu.fsmark2.data.sharedpf.SharedPrefsHelper;
@@ -148,16 +149,23 @@ public class FacebookLoginActivity extends BaseActivity {
 
     private void completeSignIn() {
         Map<String, Object> userMainInfo = new HashMap<>();
+
         userMainInfo.put("email", ""+mAuth.getCurrentUser().getEmail());
+        sharedPrefsHelper.put(Constants.USER_EMAIL, mAuth.getCurrentUser().getEmail());
+
         userMainInfo.put("name", mAuth.getCurrentUser().getDisplayName());
+        sharedPrefsHelper.put(Constants.USER_NAME, mAuth.getCurrentUser().getDisplayName());
+
         userMainInfo.put("photoURL", makePhotoUrl(AccessToken.getCurrentAccessToken().getUserId()));
+        sharedPrefsHelper.put(Constants.USER_PHOTO_URL, makePhotoUrl(AccessToken.getCurrentAccessToken().getUserId()));
+
         userMainInfo.put("fcmToken", FirebaseInstanceId.getInstance().getToken());
         FirebaseDatabaseHelper.getInstance().setValue(userMainInfo);
         Log.e("user id " , AccessToken.getCurrentAccessToken().getUserId());
     }
 
     private String makePhotoUrl(@NonNull String fbId) {
-        return  "http://graph.facebook.com/" + fbId + "/picture?type=large";
+        return  "https://graph.facebook.com/" + fbId + "/picture?type=large";
     }
 
 }
