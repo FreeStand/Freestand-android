@@ -68,8 +68,10 @@
         </activity>
         <activity
             android:name=".Activities.UserSignUP"
-            android:theme="@style/AppTheme.NoActionBar.Grey.Statusbar"></activity>
-        <activity android:name=".Activities.Welcome"></activity>
+            android:theme="@style/AppTheme.NoActionBar.Grey.Statusbar" />
+        <activity android:name=".Activities.Welcome" />
+        <activity android:name=".Activities.Location"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"></activity>
     </application>
 
 </manifest>

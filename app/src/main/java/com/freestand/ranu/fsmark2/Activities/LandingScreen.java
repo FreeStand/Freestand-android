@@ -53,12 +53,14 @@ public class LandingScreen extends AppCompatActivity
     @Inject SharedPrefsHelper sharedPrefsHelper;
     CircleImageView profileImage ;
     TextView userName, email;
+    BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_landing);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
 
         movingInfo = (TextView)findViewById(R.id.moving_info);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -79,6 +81,14 @@ public class LandingScreen extends AppCompatActivity
         UserHandler userHandler = new UserHandler(this);
         setUserProfile();
         movingInfo.setSelected(true);
+        if(getData()!=null || getData().equals("")) {
+            if(getData().equals("partner")) {
+                onNavigationItemSelected(bottomNavigationView.getMenu().getItem(1));
+            } else if(getData().equals("elsewhere")){
+                onNavigationItemSelected(bottomNavigationView.getMenu().getItem(0));
+            }
+        }
+
     }
 
     private void setUserProfile() {
@@ -150,9 +160,7 @@ public class LandingScreen extends AppCompatActivity
                 startActivity(intent);
                 finish();
             }
-
         }
-
         return true;
     }
 
@@ -174,15 +182,17 @@ public class LandingScreen extends AppCompatActivity
         } else{
             transaction.add(R.id.frame_no_bottombar, fragment).addToBackStack("no_bottom_frag");
         }
-
         transaction.commit();
     }
 
     private void setBottomBar() {
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         onNavigationItemSelected(bottomNavigationView.getMenu().getItem(0));
+    }
+
+    private String getData() {
+        return getIntent().getStringExtra("open");
     }
 
 }

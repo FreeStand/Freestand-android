@@ -12,7 +12,6 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/constraintLayout2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="58dp"
         app:srcCompat="@drawable/logo_free_stand" />
@@ -56,7 +55,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-medium"
         android:lineSpacingExtra="5sp"
-        android:text="Date of Birth"
+        android:text="Age Group"
         android:textColor="#5674ff"
         android:textSize="14sp"
         android:id="@+id/dob_label"
@@ -64,15 +63,15 @@
 
         <Spinner
             android:layout_below="@+id/dob_label"
-        android:id="@+id/spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="54dp"
-        android:layout_marginTop="18dp"/>
+            android:id="@+id/age_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="54dp"
+            android:layout_marginTop="18dp"/>
 
 
         <ImageView
-        android:layout_below="@+id/spinner"
+        android:layout_below="@+id/age_group"
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -82,45 +81,59 @@
 
 
         <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="54dp"
-        android:layout_below="@+id/imageView3"
-        android:fontFamily="sans-serif-medium"
-        android:lineSpacingExtra="5sp"
-        android:text="Interested in"
-        android:textColor="#5674ff"
-        android:textSize="14sp"
-        android:layout_marginTop="14dp"
-        android:textStyle="normal"/>
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="54dp"
+            android:layout_below="@+id/imageView3"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="5sp"
+            android:text="Gender"
+            android:textColor="#5674ff"
+            android:textSize="14sp"
+            android:layout_marginTop="14dp"
+            android:textStyle="normal"/>
 
 
-        <CheckBox
-        android:layout_below="@id/textView3"
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="15dp"
-        android:text="CheckBox" />
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/interested_in"
+            android:gravity="center"
+            android:weightSum="2"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/textView3">
 
-        <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="61dp"
-        android:layout_toRightOf="@id/checkBox"
-        android:layout_below="@id/textView3"
-        android:layout_marginTop="15dp"
-        android:text="CheckBox"/>
+            <RadioButton
+                android:id="@+id/male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_weight="1"/>
+
+
+            <RadioButton
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"/>
+        </RadioGroup>
+
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Done"
             android:id="@+id/done"
-            android:layout_below="@id/checkBox"
+            android:layout_below="@id/interested_in"
             android:layout_marginTop="15dp"
             android:background="@color/blue"
             android:textColor="@color/white"
@@ -138,91 +151,5 @@
             android:gravity="center"
             android:text="By clicking done you confirm that the information provided by you is true."/>
 
-
-
     </RelativeLayout>
-
-<!--<RelativeLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/imageView"-->
-        <!--android:layout_marginBottom="16dp"-->
-        <!--android:layout_marginTop="8dp"-->
-        <!--android:id="@+id/constraintLayout2">-->
--->
-
-
-
-
-
-
-        <!--<android.support.constraint.ConstraintLayout-->
-            <!--android:id="@+id/constraintLayout"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginEnd="54dp"-->
-            <!--android:layout_marginStart="54dp"-->
-            <!--android:layout_marginTop="294dp"-->
-            <!--android:background="@color/blue"-->
-            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--app:layout_constraintEnd_toEndOf="parent"-->
-            <!--app:layout_constraintHorizontal_bias="0.0"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="parent"-->
-            <!--app:layout_constraintVertical_bias="0.0">-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginBottom="8dp"-->
-                <!--android:layout_marginEnd="8dp"-->
-                <!--android:layout_marginStart="8dp"-->
-                <!--android:layout_marginTop="8dp"-->
-                <!--android:fontFamily="sans-serif-medium"-->
-                <!--android:text="DONE"-->
-                <!--android:textColor="#ffffff"-->
-                <!--android:textSize="14sp"-->
-                <!--android:textStyle="normal"-->
-                <!--app:layout_constraintBottom_toBottomOf="parent"-->
-                <!--app:layout_constraintEnd_toEndOf="parent"-->
-                <!--app:layout_constraintStart_toStartOf="parent"-->
-                <!--app:layout_constraintTop_toTopOf="parent" />-->
-
-        <!--</android.support.constraint.ConstraintLayout>-->
-
-        <!--<android.support.constraint.ConstraintLayout-->
-            <!--android:layout_width="352dp"-->
-            <!--android:layout_height="74dp"-->
-            <!--android:layout_marginBottom="8dp"-->
-            <!--android:layout_marginEnd="8dp"-->
-            <!--android:layout_marginStart="8dp"-->
-            <!--android:layout_marginTop="8dp"-->
-            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--app:layout_constraintEnd_toEndOf="parent"-->
-            <!--app:layout_constraintStart_toStartOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="parent"-->
-            <!--app:layout_constraintVertical_bias="1.0">-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginEnd="54dp"-->
-                <!--android:layout_marginStart="54dp"-->
-                <!--android:layout_marginTop="18dp"-->
-                <!--android:fontFamily="sans-serif-condensed"-->
-                <!--android:gravity="center_horizontal"-->
-                <!--android:lineSpacingExtra="4sp"-->
-                <!--android:text="By clicking done you confirm that the information provided by you is true."-->
-                <!--android:textColor="@color/dark_two"-->
-                <!--android:textSize="14sp"-->
-                <!--android:textStyle="normal"-->
-                <!--app:layout_constraintEnd_toEndOf="parent"-->
-                <!--app:layout_constraintStart_toStartOf="parent"-->
-                <!--app:layout_constraintTop_toTopOf="parent" />-->
-
-
-        <!--</android.support.constraint.ConstraintLayout>-->
-
-
-    <!--</RelativeLayout>-->
 </RelativeLayout>

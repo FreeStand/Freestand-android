@@ -28,6 +28,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.HashMap;
@@ -131,12 +134,7 @@ public class FacebookLoginActivity extends BaseActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.e("hello ", "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Intent intent = new Intent(FacebookLoginActivity.this, LandingScreen.class);
-                            startActivity(intent);
-                            finish();
                             completeSignIn();
-                            Log.e("user id ", user.getUid());
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("hello ", "signInWithCredential:failure", task.getException());
@@ -148,20 +146,24 @@ public class FacebookLoginActivity extends BaseActivity {
     }
 
     private void completeSignIn() {
-        Map<String, Object> userMainInfo = new HashMap<>();
+        FirebaseDatabaseHelper.user.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.child("dob").getValue() ==  null) {
+                    Intent intent = new Intent(getBaseContext(), UserSignUP.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Intent intent = new Intent(FacebookLoginActivity.this, LandingScreen.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
 
-        userMainInfo.put("email", ""+mAuth.getCurrentUser().getEmail());
-        sharedPrefsHelper.put(Constants.USER_EMAIL, mAuth.getCurrentUser().getEmail());
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
 
-        userMainInfo.put("name", mAuth.getCurrentUser().getDisplayName());
-        sharedPrefsHelper.put(Constants.USER_NAME, mAuth.getCurrentUser().getDisplayName());
-
-        userMainInfo.put("photoURL", makePhotoUrl(AccessToken.getCurrentAccessToken().getUserId()));
-        sharedPrefsHelper.put(Constants.USER_PHOTO_URL, makePhotoUrl(AccessToken.getCurrentAccessToken().getUserId()));
-
-        userMainInfo.put("fcmToken", FirebaseInstanceId.getInstance().getToken());
-        FirebaseDatabaseHelper.getInstance().setValue(userMainInfo);
-        Log.e("user id " , AccessToken.getCurrentAccessToken().getUserId());
     }
 
     private String makePhotoUrl(@NonNull String fbId) {

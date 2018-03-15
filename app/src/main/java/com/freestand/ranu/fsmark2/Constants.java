@@ -11,4 +11,7 @@ public class Constants {
     public static String USER_PH_NO = "User_Ph_No";
     public static String USER_PHOTO_URL = "User_Photo_Url";
     public static String USER_EMAIL = "User_Email";
+    public static String USER_GENDER = "User_Gender";
+    public static String USER_DOB = "date_of_birth";
+
 }

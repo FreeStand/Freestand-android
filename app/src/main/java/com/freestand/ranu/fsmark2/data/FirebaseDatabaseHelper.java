@@ -1,11 +1,16 @@
 package com.freestand.ranu.fsmark2.data;
 
+import android.content.Intent;
 import android.util.Log;
 
+import com.freestand.ranu.fsmark2.Activities.UserSignUP;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +22,7 @@ public class FirebaseDatabaseHelper {
     private static FirebaseDatabaseHelper firebaseHelperInstance = null;
     private static String UUID = FirebaseAuth.getInstance().getUid();
     private static DatabaseReference firebaseDbReference = FirebaseDatabase.getInstance().getReference();;
-    private static DatabaseReference user = firebaseDbReference.child("users").child(UUID);
+    public static DatabaseReference user = firebaseDbReference.child("users").child(UUID);
 
     public static FirebaseDatabaseHelper getInstance() {
         if ( firebaseHelperInstance == null)
@@ -34,4 +39,9 @@ public class FirebaseDatabaseHelper {
             return false;
         }
     }
+
+   public String getDOB () {
+
+        return "";
+   }
 }

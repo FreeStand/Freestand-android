@@ -39,7 +39,7 @@ public interface ApiInterface {
     Call<List<Faq>> getFaqs();
 
 
-    @GET("newHome")
+    @GET("fsHome")
     Call<HomeData> getHomeData(@QueryMap Map<String, String> params);
 
 

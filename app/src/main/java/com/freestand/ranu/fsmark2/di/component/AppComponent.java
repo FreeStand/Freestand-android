@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.freestand.ranu.fsmark2.Activities.FacebookLoginActivity;
 import com.freestand.ranu.fsmark2.Activities.LandingScreen;
 import com.freestand.ranu.fsmark2.Activities.MainDeciderActivity;
+import com.freestand.ranu.fsmark2.Activities.UserSignUP;
 import com.freestand.ranu.fsmark2.AppController;
 import com.freestand.ranu.fsmark2.FirebaseIDService;
 import com.freestand.ranu.fsmark2.data.sharedpf.SharedPrefsHelper;
@@ -28,7 +29,8 @@ public interface AppComponent {
     void inject(LandingScreen landingScreen);
     void inject (FirebaseIDService firebaseIDService);
     void inject (MainDeciderActivity mainDeciderActivity);
-    void inject(FacebookLoginActivity facebookLoginActivity);
+    void inject(UserSignUP userSignUP);
+    void inject (FacebookLoginActivity facebookLoginActivity);
     Application getApplicationInstance();
     SharedPrefsHelper sharedPrefsHelper();
     NetComponent plusNetComponent (NetModule netModule);
