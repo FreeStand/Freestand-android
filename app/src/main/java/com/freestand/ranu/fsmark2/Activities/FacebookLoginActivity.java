@@ -29,16 +29,20 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 import javax.inject.Inject;
 
 public class FacebookLoginActivity extends BaseActivity {
-    @Inject SharedPrefsHelper sharedPrefsHelper;
+    @Inject
+    SharedPrefsHelper sharedPrefsHelper;
     CallbackManager callbackManager;
     AccessToken accessToken;
     AccessTokenTracker accessTokenTracker;
     ProfileTracker profileTracker;
     Profile profile = Profile.getCurrentProfile();
     FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //restore theme from set by splash screen
@@ -79,10 +83,12 @@ public class FacebookLoginActivity extends BaseActivity {
                         handleFacebookAccessToken(loginResult.getAccessToken());
                         Log.e("login result", loginResult.getAccessToken().getToken());
                     }
+
                     @Override
                     public void onCancel() {
                         Log.e("login unsucessful", "cancel");
                     }
+
                     @Override
                     public void onError(FacebookException exception) {
                         Log.e("login unsucessful", exception.getMessage());
@@ -108,7 +114,7 @@ public class FacebookLoginActivity extends BaseActivity {
                     AccessToken currentAccessToken) {
                 // Set the access token using
                 // currentAccessToken when it's loaded or set.
-                if(accessToken!=null) {
+                if (accessToken != null) {
                     Log.e("current access token", accessToken.getUserId() + "");
                 }
             }
@@ -137,17 +143,20 @@ public class FacebookLoginActivity extends BaseActivity {
                             }
                         }
                     });
-        }catch (Exception e) {
+        } catch (Exception e) {
             Log.e("Error", e.getMessage());
         }
 
     }
 
     private void completeSignIn() {
+        HashMap<String, Object> hashMap = new HashMap();
+        hashMap.put("device_type", "android");
+        FirebaseDatabaseHelper.getInstance().setValue(hashMap);
         FirebaseDatabaseHelper.user.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child("dob").getValue() ==  null) {
+                if (dataSnapshot.child("dob").getValue() == null) {
                     Intent intent = new Intent(getBaseContext(), UserSignUP.class);
                     startActivity(intent);
                     finish();
@@ -159,13 +168,14 @@ public class FacebookLoginActivity extends BaseActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {}
+            public void onCancelled(DatabaseError databaseError) {
+            }
         });
 
     }
 
     private String makePhotoUrl(@NonNull String fbId) {
-        return  "https://graph.facebook.com/" + fbId + "/picture?type=large";
+        return "https://graph.facebook.com/" + fbId + "/picture?type=large";
     }
 
 }

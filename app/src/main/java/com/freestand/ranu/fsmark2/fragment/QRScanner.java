@@ -62,7 +62,7 @@ public class QRScanner extends BaseFragment implements ZXingScannerView.ResultHa
 
     @Override
     void onFragmentCreated() {
-        getData();
+//        getData();
     }
 
     @Override
