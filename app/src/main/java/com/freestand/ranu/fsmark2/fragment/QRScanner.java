@@ -82,16 +82,21 @@ public class QRScanner extends BaseFragment implements ZXingScannerView.ResultHa
         String tempGender = result.getText().substring(5,6);
         String location = result.getText().substring(6);
         Log.e("print ", surveyId + " " + tempGender + " " + location);
-        getData();
-    }
-
-    private void getData() {
-        ApiInterface apiService = retrofitClient.create(ApiInterface.class);
         Map map = new HashMap();
         map.put("uid", FirebaseAuth.getInstance().getUid());
-        map.put("lid", "MAIT");
-        map.put("sid", "s0120");
-        map.put("category", "Male");
+        map.put("lid", location);
+        map.put("sid", surveyId);
+        map.put("category", "General");
+        getData(map);
+    }
+
+    private void getData(Map map) {
+        ApiInterface apiService = retrofitClient.create(ApiInterface.class);
+//         Map map = new HashMap();
+//         map.put("uid", FirebaseAuth.getInstance().getUid());
+//         map.put("lid", "MAIT");
+//         map.put("sid", "s0120");
+//         map.put("category", "Male");
         Call<CheckQr> call = apiService.getQrScannedRespose(map);
         call.enqueue(new Callback<CheckQr>() {
             @Override
