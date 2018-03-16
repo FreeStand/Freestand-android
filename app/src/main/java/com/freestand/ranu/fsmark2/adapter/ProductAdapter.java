@@ -2,6 +2,7 @@ package com.freestand.ranu.fsmark2.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +27,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     private List<Product> productList = new ArrayList<>();
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.product_image) ImageView productImage;
-        @BindView(R.id.product_name) TextView productName;
-        @BindView(R.id.product_price) TextView productPrice;
+        @BindView(R.id.product_image)
+        ImageView productImage;
+        @BindView(R.id.product_name)
+        TextView productName;
+        @BindView(R.id.product_price)
+        TextView productPrice;
 
         public MyViewHolder(View view) {
             super(view);
@@ -53,9 +57,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Product product = productList.get(position);
-        holder.productName.setText(product.getName());
-        holder.productPrice.setText("Rs. " + product.getPrice());
-        Picasso.with(context).load(product.getImgURL()).into(holder.productImage);
+        if (product != null) {
+            if (!TextUtils.isEmpty(product.getName())) {
+                holder.productName.setText(product.getName());
+            }
+            if (!TextUtils.isEmpty(product.getPrice())) {
+                holder.productPrice.setText("Rs. " + product.getPrice());
+            }
+            if (!TextUtils.isEmpty(product.getImgURL())) {
+                Picasso.with(context).load(product.getImgURL()).into(holder.productImage);
+            }
+        }
+
+
     }
 
     @Override

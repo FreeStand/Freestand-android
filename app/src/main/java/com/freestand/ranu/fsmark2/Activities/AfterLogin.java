@@ -22,9 +22,12 @@ public class AfterLogin extends BaseActivity implements BottomNavigationView.OnN
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setBottomBar();
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.logo_white);
-        getSupportActionBar().setTitle("");
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setIcon(R.drawable.logo_white);
+            getSupportActionBar().setTitle("");
+        }
+
         Log.e("hello ", FirebaseInstanceId.getInstance().getToken());
         UserHandler userHandler = new UserHandler(this);
     }
@@ -35,7 +38,7 @@ public class AfterLogin extends BaseActivity implements BottomNavigationView.OnN
     }
 
     private void setBottomBar() {
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
     }

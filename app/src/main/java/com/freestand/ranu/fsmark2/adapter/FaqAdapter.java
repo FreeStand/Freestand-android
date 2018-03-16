@@ -1,6 +1,7 @@
 package com.freestand.ranu.fsmark2.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +9,6 @@ import android.widget.TextView;
 
 import com.freestand.ranu.fsmark2.R;
 import com.freestand.ranu.fsmark2.data.model.FAQ.Faq;
-import com.freestand.ranu.fsmark2.data.model.alert.Alert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,9 +48,17 @@ public class FaqAdapter extends RecyclerView.Adapter<FaqAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Faq faq = faqList.get(position);
-        holder.question.setText(faq.getQuestion());
+        if (faq != null) {
+            if (!TextUtils.isEmpty(faq.getQuestion())) {
+                holder.question.setText(faq.getQuestion());
+
+            }
+            if (!TextUtils.isEmpty(faq.getAnswer())) {
+                holder.answer.setText(faq.getAnswer());
+            }
+        }
         holder.date.setText("");
-        holder.answer.setText(faq.getAnswer());
+
     }
 
     @Override

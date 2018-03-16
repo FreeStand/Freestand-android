@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "225537858800-lrh45po0irrpf49etdinsgmees1rpshv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.freestand.ranu.fsmark2",
+            "certificate_hash": "0297250fd3effc0e60084485853a04e926ef0916"
+          }
+        },
+        {
           "client_id": "225537858800-p3rmcgm65ug379sug8oup9nfpv8qdcvj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -72,15 +80,15 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "225537858800-a1t932cf2rvj65qgiok2702kq4lifc0p.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
               "client_id": "225537858800-3j671gdhg67hnpu40mktk29ti2t4o1d5.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "freestand.dbManager"
               }
+            },
+            {
+              "client_id": "225537858800-a1t932cf2rvj65qgiok2702kq4lifc0p.apps.googleusercontent.com",
+              "client_type": 3
             }
           ]
         },
@@ -123,15 +131,15 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "225537858800-a1t932cf2rvj65qgiok2702kq4lifc0p.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
               "client_id": "225537858800-3j671gdhg67hnpu40mktk29ti2t4o1d5.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "freestand.dbManager"
               }
+            },
+            {
+              "client_id": "225537858800-a1t932cf2rvj65qgiok2702kq4lifc0p.apps.googleusercontent.com",
+              "client_type": 3
             }
           ]
         },
@@ -174,15 +182,15 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "225537858800-a1t932cf2rvj65qgiok2702kq4lifc0p.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
               "client_id": "225537858800-3j671gdhg67hnpu40mktk29ti2t4o1d5.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "freestand.dbManager"
               }
+            },
+            {
+              "client_id": "225537858800-a1t932cf2rvj65qgiok2702kq4lifc0p.apps.googleusercontent.com",
+              "client_type": 3
             }
           ]
         },

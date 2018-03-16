@@ -1,11 +1,9 @@
 package com.freestand.ranu.fsmark2.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,10 +93,13 @@ public class Coupon extends BaseFragment {
         call.enqueue(new Callback<List<CouponItem>>() {
             @Override
             public void onResponse(Call<List<CouponItem>>call, Response<List<CouponItem>> response) {
-                couponItemList.clear();
-                couponItemList.addAll(response.body());
-                couponAdapter.notifyDataSetChanged();
-                Utility.DialogClass.dismissPleaseWait();
+                if(response.body() != null) {
+                    couponItemList.clear();
+                    couponItemList.addAll(response.body());
+                    couponAdapter.notifyDataSetChanged();
+                    Utility.DialogClass.dismissPleaseWait();
+                }
+
             }
 
             @Override

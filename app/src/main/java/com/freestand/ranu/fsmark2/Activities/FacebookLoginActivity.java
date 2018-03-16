@@ -15,8 +15,6 @@ import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.freestand.ranu.fsmark2.AppController;
-import com.freestand.ranu.fsmark2.Constants;
 import com.freestand.ranu.fsmark2.R;
 import com.freestand.ranu.fsmark2.data.FirebaseDatabaseHelper;
 import com.freestand.ranu.fsmark2.data.sharedpf.SharedPrefsHelper;
@@ -27,14 +25,9 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.iid.FirebaseInstanceId;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -124,25 +117,30 @@ public class FacebookLoginActivity extends BaseActivity {
         accessToken = AccessToken.getCurrentAccessToken();
     }
 
-    private void handleFacebookAccessToken(AccessToken token) {
-        Log.d("hello", "handleFacebookAccessToken:" + token);
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.e("hello ", "signInWithCredential:success");
-                            completeSignIn();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("hello ", "signInWithCredential:failure", task.getException());
-                            Toast.makeText(FacebookLoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+    private void handleFacebookAccessToken(AccessToken accessToken) {
+        Log.d("hello", "handleFacebookAccessToken:" + accessToken);
+        AuthCredential credential = FacebookAuthProvider.getCredential(accessToken.getToken());
+        try {
+            mAuth.signInWithCredential(credential)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.e("hello ", "signInWithCredential:success");
+                                completeSignIn();
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w("hello ", "signInWithCredential:failure", task.getException());
+                                Toast.makeText(FacebookLoginActivity.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+        }catch (Exception e) {
+            Log.e("Error", e.getMessage());
+        }
+
     }
 
     private void completeSignIn() {

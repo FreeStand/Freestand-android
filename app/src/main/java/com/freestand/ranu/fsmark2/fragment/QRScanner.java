@@ -1,8 +1,9 @@
 package com.freestand.ranu.fsmark2.fragment;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,13 @@ import com.freestand.ranu.fsmark2.data.network.rest.ApiInterface;
 import com.freestand.ranu.fsmark2.di.ComponentFactory;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.zxing.Result;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.DialogOnDeniedPermissionListener;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -103,7 +111,7 @@ public class QRScanner extends BaseFragment implements ZXingScannerView.ResultHa
             public void onResponse(Call<CheckQr>call, Response<CheckQr> response) {
                 Log.e("response ", response.toString());
                 CheckQr checkQr = response.body();
-                if(checkQr.getStatus().equals("valid")) {
+                if(checkQr != null && checkQr.getStatus() != null && checkQr.getStatus().equals("valid")) {
                     Intent intent = new Intent(getActivity(), FeedbackScreen.class);
                     intent.putExtra("question_list", (Serializable) checkQr.getDict().getQuestions());
                     intent.putExtra("direction", "com.freestand.ranu.fsmark2.Activities.Welcome");
@@ -119,6 +127,26 @@ public class QRScanner extends BaseFragment implements ZXingScannerView.ResultHa
             }
         });
 
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Dexter.withActivity(getActivity())
+                .withPermission(Manifest.permission.CAMERA)
+                .withListener(new PermissionListener() {
+                    @Override public void onPermissionGranted(PermissionGrantedResponse response) {/* ... */}
+                    @Override public void onPermissionDenied(PermissionDeniedResponse response) {
+                        PermissionListener dialogPermissionListener =
+                                DialogOnDeniedPermissionListener.Builder
+                                        .withContext(getContext())
+                                        .withTitle("Camera permission")
+                                        .withMessage("Camera permission is needed to take pictures of your cat")
+                                        .withButtonText(android.R.string.ok)
+                                        .build();
+                    }
+                    @Override public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {/* ... */}
+                }).check();
     }
 
     @Override

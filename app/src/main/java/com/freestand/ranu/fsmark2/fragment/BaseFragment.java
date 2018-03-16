@@ -7,8 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.freestand.ranu.fsmark2.R;
-
 /**
  * Created by prateek on 4/1/18.
  */

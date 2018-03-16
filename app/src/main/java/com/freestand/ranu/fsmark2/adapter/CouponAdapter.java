@@ -4,6 +4,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -195,17 +196,26 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.MyViewHold
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         CouponItem item = couponItemList.get(position);
-        holder.title.setText(item.getTitle());
-        holder.description.setText(item.getSubtitle());
-        Picasso.with(context).load(item.getImgURL()).into(holder.couponImage);
-        if(item.getShowCouponOnScreen() == null) {
-            holder.clickCoupon.setVisibility(View.VISIBLE);
-            holder.couponCodeLayout.setVisibility(View.GONE);
-        } else {
-            holder.clickCoupon.setVisibility(View.GONE);
-            holder.couponCodeLayout.setVisibility(View.VISIBLE);
-            holder.couponValue.setText(item.getShowCouponOnScreen());
+        if(item != null) {
+            if(!TextUtils.isEmpty(item.getTitle())) {
+                holder.title.setText(item.getTitle());
+            }
+            if(!TextUtils.isEmpty(item.getSubtitle())){
+                holder.description.setText(item.getSubtitle());
+            }
+            if(!TextUtils.isEmpty(item.getImgURL())) {
+                Picasso.with(context).load(item.getImgURL()).into(holder.couponImage);
+            }
+            if(item.getShowCouponOnScreen() == null) {
+                holder.clickCoupon.setVisibility(View.VISIBLE);
+                holder.couponCodeLayout.setVisibility(View.GONE);
+            } else {
+                holder.clickCoupon.setVisibility(View.GONE);
+                holder.couponCodeLayout.setVisibility(View.VISIBLE);
+                holder.couponValue.setText(item.getShowCouponOnScreen());
+            }
         }
+
     }
 
     @Override

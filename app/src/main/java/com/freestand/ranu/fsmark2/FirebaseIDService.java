@@ -3,7 +3,6 @@ package com.freestand.ranu.fsmark2;
 import android.util.Log;
 
 import com.freestand.ranu.fsmark2.data.UserHandler;
-import com.freestand.ranu.fsmark2.data.model.User;
 import com.freestand.ranu.fsmark2.data.sharedpf.SharedPrefsHelper;
 import com.freestand.ranu.fsmark2.di.ComponentFactory;
 import com.google.firebase.iid.FirebaseInstanceId;

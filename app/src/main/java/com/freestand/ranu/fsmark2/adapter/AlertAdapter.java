@@ -1,6 +1,7 @@
 package com.freestand.ranu.fsmark2.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,9 +47,12 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Alert alert = alertList.get(position);
-        holder.title.setText(alert.getTitle());
-        holder.description.setText(alert.getBody());
-        holder.date.setText(alert.getDate());
+        if (alert != null) {
+            holder.title.setText(TextUtils.isEmpty(alert.getTitle()) ? "" : alert.getTitle());
+            holder.description.setText(TextUtils.isEmpty(alert.getBody()) ? "" : alert.getBody());
+            holder.date.setText(TextUtils.isEmpty(alert.getDate()) ? "" : alert.getDate());
+        }
+
     }
 
     @Override

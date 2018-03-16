@@ -7,17 +7,12 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
 import com.facebook.stetho.Stetho;
 import com.freestand.ranu.fsmark2.di.ComponentFactory;
 import com.freestand.ranu.fsmark2.di.component.AppComponent;
-import com.freestand.ranu.fsmark2.di.component.DaggerAppComponent;
-import com.freestand.ranu.fsmark2.di.module.AppModule;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import javax.inject.Inject;
-
-import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by prateek on 7/1/18.
@@ -60,7 +55,10 @@ public class AppController extends Application {
     public static boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        if(connectivityManager != null) {
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        }
+        return false;
     }
 }
