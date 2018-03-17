@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:viewportWidth="24"
+    android:viewportHeight="24" android:width="24dp" android:height="24dp">
+    <group android:name="camera">
+        <path android:fillColor="#00000000" android:strokeWidth="2" android:name="Shape"
+            android:fillType="evenOdd" android:strokeColor="#FFFFFF"
+            android:pathData="M23,19 C23,20.1045695 22.1045695,21 21,21 L3,21 C1.8954305,21 1,20.1045695 1,19 L1,8 C1,6.8954305 1.8954305,6 3,6 L7,6 L9,3 L15,3 L17,6 L21,6 C22.1045695,6 23,6.8954305 23,8 L23,19 Z" />
+        <path android:fillColor="#00000000" android:strokeWidth="2" android:name="Oval"
+            android:fillType="evenOdd" android:strokeColor="#FFFFFF"
+            android:pathData="M8,13a4,4 0 0,1 8,0a4,4 0 0,1 -8,0z" />
+    </group>
+</vector>

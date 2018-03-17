@@ -2,28 +2,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_favorites"
+        android:id="@+id/action_home"
         android:enabled="true"
-        android:icon="@android:drawable/btn_star"
+        android:icon="@drawable/selector_home"
         android:title="Home"
-        app:showAsAction="always|withText" />
-    <item
-        android:id="@+id/action_schedules"
-        android:enabled="true"
-        android:icon="@android:drawable/ic_menu_camera"
-        android:title="QR Scan"
-        app:showAsAction="always|withText" />
-    <item
-        android:id="@+id/action_music"
-        android:enabled="true"
-        android:icon="@android:drawable/ic_dialog_alert"
-        android:title="music"
         app:showAsAction="always|withText" />
 
     <item
-        android:id="@+id/action_music2"
+        android:id="@+id/action_coupon"
         android:enabled="true"
-        android:icon="@android:drawable/ic_media_pause"
-        android:title="More"
+        android:icon="@drawable/selector_coupon"
+        android:title="Coupons"
         app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/action_qr"
+        android:enabled="true"
+        android:icon="@drawable/selector_scan_qr"
+        android:title="QR Scan"
+        app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/action_alerts"
+        android:enabled="true"
+        android:icon="@drawable/selector_alerts"
+        android:title="Alerts"
+        app:showAsAction="always|withText" />
+
 </menu>

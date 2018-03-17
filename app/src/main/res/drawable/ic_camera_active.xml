@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:viewportWidth="24"
+    android:viewportHeight="24" android:width="24dp" android:height="24dp">
+    <group android:name="camera">
+        <path android:fillColor="#FFFFFF" android:strokeWidth="1" android:name="Combined-Shape"
+            android:fillType="nonZero" android:strokeColor="#00000000"
+            android:pathData="M17.5351838,5 L21,5 C22.6568542,5 24,6.34314575 24,8 L24,19 C24,20.6568542 22.6568542,22 21,22 L3,22 C1.34314575,22 3.33066907e-16,20.6568542 0,19 L0,8 C-2.22044605e-16,6.34314575 1.34314575,5 3,5 L6.46481624,5 L8.16794971,2.4452998 C8.35341548,2.16710114 8.66564681,2 9,2 L15,2 C15.3343532,2 15.6465845,2.16710114 15.8320503,2.4452998 L17.5351838,5 Z M12,18 C14.7614237,18 17,15.7614237 17,13 C17,10.2385763 14.7614237,8 12,8 C9.23857625,8 7,10.2385763 7,13 C7,15.7614237 9.23857625,18 12,18 Z" />
+    </group>
+</vector>

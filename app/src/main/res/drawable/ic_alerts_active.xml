@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:viewportWidth="24"
+    android:viewportHeight="24" android:width="24dp" android:height="24dp">
+    <group android:name="bell">
+        <path android:fillColor="#FFFFFF" android:strokeWidth="1" android:name="Shape"
+            android:fillType="nonZero" android:strokeColor="#00000000"
+            android:pathData="M22,19 L2,19 C0.666666667,19 0.666666667,17 2,17 C3.1045695,17 4,16.1045695 4,15 L4,9.99999999 C4.00000007,5.58172203 7.58172205,2.0000001 12,2.0000001 C16.418278,2.0000001 19.9999999,5.58172203 20,10 L20,15 C20,16.1045695 20.8954305,17 22,17 C23.3333333,17 23.3333333,19 22,19 Z M14.595,22.5017719 C14.0583034,23.4269784 13.0696029,23.9964563 12,23.9964563 C10.9303971,23.9964563 9.94169664,23.4269784 9.405,22.5017719 C9.01827917,21.8351073 9.49928951,21 10.27,21 L13.73,21 C14.5007105,21 14.9817208,21.8351073 14.595,22.5017719 Z" />
+    </group>
+</vector>
