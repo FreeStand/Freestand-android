@@ -39,6 +39,8 @@ public class QRScanner extends BaseFragment implements ZXingScannerView.ResultHa
     @BindView(R.id.scan_view) ZXingScannerView mScannerView;
     @Inject Retrofit retrofitClient;
     String surveyId;
+    String location;
+    String gender;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,7 +56,6 @@ public class QRScanner extends BaseFragment implements ZXingScannerView.ResultHa
 
     @Override
     void onFragmentCreated() {
-        getData();
     }
 
     @Override
@@ -79,9 +80,9 @@ public class QRScanner extends BaseFragment implements ZXingScannerView.ResultHa
 
     private void callResult(Result result) {
         surveyId = result.getText().substring(0,5);
-        String tempGender = result.getText().substring(5,6);
-        String location = result.getText().substring(6);
-        Log.e("print ", surveyId + " " + tempGender + " " + location);
+        gender = result.getText().substring(5,6);
+        location = result.getText().substring(6);
+        Log.e("print ", surveyId + " " + gender + " " + location);
         getData();
     }
 
@@ -89,9 +90,9 @@ public class QRScanner extends BaseFragment implements ZXingScannerView.ResultHa
         ApiInterface apiService = retrofitClient.create(ApiInterface.class);
         Map map = new HashMap();
         map.put("uid", FirebaseAuth.getInstance().getUid());
-        map.put("lid", "MAIT");
-        map.put("sid", "s0003");
-        map.put("category", "General");
+        map.put("lid", location);
+        map.put("sid", surveyId);
+        map.put("category", gender);
         Call<CheckQr> call = apiService.getQrScannedRespose(map);
         call.enqueue(new Callback<CheckQr>() {
             @Override
