@@ -6,13 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.freestand.ranu.fsmark2.Activities.FeedbackScreen">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:progress="2"
-        android:max="4" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

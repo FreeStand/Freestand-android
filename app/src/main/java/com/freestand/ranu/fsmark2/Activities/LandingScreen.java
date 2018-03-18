@@ -81,7 +81,7 @@ public class LandingScreen extends AppCompatActivity
         UserHandler userHandler = new UserHandler(this);
         setUserProfile();
         movingInfo.setSelected(true);
-        if(getData()!=null || getData().equals("")) {
+        if(getData()!=null) {
             if(getData().equals("partner")) {
                 onNavigationItemSelected(bottomNavigationView.getMenu().getItem(1));
             } else if(getData().equals("elsewhere")){
@@ -138,9 +138,9 @@ public class LandingScreen extends AppCompatActivity
                 fragment = new Coupon();
                 loadFragmentWithBottomBar(fragment);
                 return true;
-            case R.id.total_saving:
+            case R.id.history:
                 return true;
-            case R.id.delivery_status:
+            case R.id.address:
                 return true;
             case R.id.faq:
                 fragment = new FAQ();

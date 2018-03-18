@@ -9,18 +9,20 @@ public class CouponItem {
 
     @SerializedName("brandName")
     private String brandName;
+    @SerializedName("generalCouponCode")
+    private String generalCouponCode;
     @SerializedName("imgURL")
     private String imgURL;
+    @SerializedName("isUnique")
+    private Boolean isUnique;
     @SerializedName("subtitle")
     private String subtitle;
     @SerializedName("title")
     private String title;
     @SerializedName("couponID")
     private String couponID;
-    @SerializedName("showCouponOnScreen")
-    private String showCouponOnScreen;
-    @SerializedName("generalCouponCode")
-    private String generalCouponCode;
+    @SerializedName("redeem")
+    private String redeem;
 
     public String getBrandName() {
         return brandName;
@@ -30,12 +32,28 @@ public class CouponItem {
         this.brandName = brandName;
     }
 
+    public String getGeneralCouponCode() {
+        return generalCouponCode;
+    }
+
+    public void setGeneralCouponCode(String generalCouponCode) {
+        this.generalCouponCode = generalCouponCode;
+    }
+
     public String getImgURL() {
         return imgURL;
     }
 
     public void setImgURL(String imgURL) {
         this.imgURL = imgURL;
+    }
+
+    public Boolean getIsUnique() {
+        return isUnique;
+    }
+
+    public void setIsUnique(Boolean isUnique) {
+        this.isUnique = isUnique;
     }
 
     public String getSubtitle() {
@@ -62,20 +80,12 @@ public class CouponItem {
         this.couponID = couponID;
     }
 
-    public String getShowCouponOnScreen() {
-        return showCouponOnScreen;
+    public String getRedeem() {
+        return redeem;
     }
 
-    public void setShowCouponOnScreen(String showCouponOnScreen) {
-        this.showCouponOnScreen = showCouponOnScreen;
-    }
-
-    public String getGeneralCouponCode() {
-        return generalCouponCode;
-    }
-
-    public void setGeneralCouponCode(String generalCouponCode) {
-        this.generalCouponCode = generalCouponCode;
+    public void setRedeem(String redeem) {
+        this.redeem = redeem;
     }
 
 }

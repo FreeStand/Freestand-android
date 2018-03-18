@@ -32,7 +32,7 @@ public interface ApiInterface {
     @GET("sendCoupon")
     Call<CouponItemResponse> getUniqueCoupons(@QueryMap Map<String, String> params);
 
-    @GET("sendGeneralCouponSurvey")
+    @GET("sendCouponSurvey")
     Call<CouponItemResponse> getGeneralCouponSurvey(@QueryMap Map<String, String> params);
 
     @GET("getFAQs")

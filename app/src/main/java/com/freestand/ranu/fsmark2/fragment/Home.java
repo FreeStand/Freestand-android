@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ import com.freestand.ranu.fsmark2.common.Utility;
 import com.freestand.ranu.fsmark2.customview.OnSwipeTouchListener;
 import com.freestand.ranu.fsmark2.data.model.FAQ.Faq;
 import com.freestand.ranu.fsmark2.data.model.checkqr.CheckQr;
+import com.freestand.ranu.fsmark2.data.model.checkqr.Question;
 import com.freestand.ranu.fsmark2.data.model.home.HomeData;
 import com.freestand.ranu.fsmark2.data.model.home.Product;
 import com.freestand.ranu.fsmark2.data.network.rest.ApiInterface;
@@ -48,6 +50,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import nl.dionsegijn.konfetti.KonfettiView;
+import nl.dionsegijn.konfetti.models.Shape;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -63,8 +67,12 @@ public class Home extends BaseFragment {
     @BindView(R.id.swipe_button) Button swipeButton;
     @BindView(R.id.rv_products) RecyclerView rvProducts;
     @BindView(R.id.tv_message) TextView tvMessage;
-
-
+    @BindView(R.id.linearLayout2)
+    LinearLayout boxToGrab;
+    List<Question> questions;
+    @BindView(R.id.viewKonfetti) KonfettiView konfettiView;
+    String surveyID;
+    String sender;
     private List<Product> productList = new ArrayList<>();
     private ProductAdapter productAdapter;
 
@@ -88,13 +96,30 @@ public class Home extends BaseFragment {
     void onFragmentCreated() {
         setRecyclerView();
         setSwipeButton();
-        getSetData();
+        setKonfetti();
+    }
+
+    private void setKonfetti() {
+        konfettiView.build()
+                .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA, Color.BLUE, Color.CYAN, Color.RED)
+                .setDirection(0.0, 359.0)
+                .setSpeed(1f, 25f)
+                .setFadeOutEnabled(true)
+                .setTimeToLive(1000000L)
+                .addShapes(Shape.RECT, Shape.CIRCLE)
+                .setPosition(0f, konfettiView.getWidth() + 50f, -50f, -50f)
+                .stream(70, 5000L);
     }
 
     private void setSwipeButton() {
         swipeButton.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
             public void onSwipeRight() {
-                Toast.makeText(getContext(), "right", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity() , FeedbackScreen.class);
+                intent.putExtra("sender", sender);
+                intent.putExtra("question_list", (Serializable) questions);
+                intent.putExtra("survey_id", surveyID);
+                intent.putExtra("direction", "com.freestand.ranu.fsmark2.Activities.ThankYou");
+                startActivity(intent);
             }
 
         });
@@ -137,31 +162,37 @@ public class Home extends BaseFragment {
     }
 
     private void setData(HomeData homeData) {
-        productList.clear();
-        productList.addAll(homeData.getSurvey().getProducts());
-        productAdapter.notifyDataSetChanged();
-
-
         if(!homeData.getIsEmpty()) {
             if(homeData.getSurveyType().equals("pre")) {
-
-//                Get the list of products to diplay on screen from products array
+                productList.clear();
+                productList.addAll(homeData.getSurvey().getProducts());
+                productAdapter.notifyDataSetChanged();
+                swipeButton.setEnabled(true);
+                questions = homeData.getSurvey().getQuestions();
+                surveyID = homeData.getSurvey().getSurveyID();
 //                Get the surveyQuestions to show on next screen from questions array
 //                Get the surveyID to send to feedback screen from surveyID key
-
+                boxToGrab.setVisibility(View.VISIBLE);
                 swipeButton.setText(">>> SWIPE TO COLLECT >>>");
                 swipeButton.setBackgroundColor(Color.parseColor("#5B86FF"));
+                sender = "pre_sampling";
 
             } else if (homeData.getSurveyType().equals("post")) {
+                swipeButton.setEnabled(true);
                 rvProducts.setVisibility(View.GONE);
+                tvMessage.setVisibility(View.VISIBLE);
+                boxToGrab.setVisibility(View.INVISIBLE);
                 tvMessage.setText(homeData.getMessage());
                 swipeButton.setText(">>> SWIPE TO ANSWER >>>");
                 swipeButton.setBackgroundColor(Color.parseColor("#5E7E47"));
-
+                questions = homeData.getSurvey().getQuestions();
+                surveyID = homeData.getSurvey().getSurveyID();
+                sender = "post_sampling";
 //                Get the surveyQuestions to show on next screen from questions array
 //                Get the surveyID to send to feedback screen from surveyID key
             }
         } else {
+            boxToGrab.setVisibility(View.INVISIBLE);
             rvProducts.setVisibility(View.GONE);
             tvMessage.setVisibility(View.VISIBLE);
             tvMessage.setText(homeData.getMessage());
@@ -170,8 +201,6 @@ public class Home extends BaseFragment {
         }
 
     }
-
-
     private void setRecyclerView() {
         productAdapter= new ProductAdapter(productList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(AppController.getInstance());
@@ -180,4 +209,9 @@ public class Home extends BaseFragment {
         rvProducts.setAdapter(productAdapter);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getSetData();
+    }
 }

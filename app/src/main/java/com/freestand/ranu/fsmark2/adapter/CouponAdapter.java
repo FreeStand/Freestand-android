@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,15 +47,12 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.MyViewHold
     Retrofit retrofit;
     private List<CouponItem> couponItemList = new ArrayList<>();
     private Context context;
-
-    public CouponAdapter() {
-        ComponentFactory.getComponentFactory().getNetComponent().inject(this);
-    }
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView title, couponValue, description, showCopied, clickCoupon;
         ImageView couponImage;
         LinearLayout couponCodeLayout;
         RelativeLayout couponCard;
+        ProgressBar progressBar;
 
         public MyViewHolder(View view) {
             super(view);
@@ -67,6 +65,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.MyViewHold
             couponCodeLayout = (LinearLayout)view.findViewById(R.id.coupon_code);
             couponCard = (RelativeLayout)view.findViewById(R.id.coupon_card);
             context = view.getContext();
+            progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
             attachClickListener();
         }
 
@@ -90,44 +89,13 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.MyViewHold
                     CouponItemResponse couponItemResponse = response.body();
 
                     couponItemResponse.setCouponCode(couponItemList.get(getAdapterPosition()).getGeneralCouponCode());
-                    if(couponItemResponse.getContainsFeedBack()) {
                         Intent intent = new Intent(context, FeedbackScreen.class);
                         intent.putExtra("question_list", (Serializable) couponItemResponse.getQuestions());
+                        intent.putExtra("survey_id", couponItemList.get(getAdapterPosition()).getCouponID());
+                        intent.putExtra("brand", couponItemList.get(getAdapterPosition()).getBrandName());
+                        intent.putExtra("sender", "coupon");
+                        intent.putExtra("direction", "dismiss");
                         context.startActivity(intent);
-                    }
-                    Log.d("hello ", "Number of alerts received: " + response.toString());
-                }
-
-                @Override
-                public void onFailure(Call<CouponItemResponse>call, Throwable t) {
-                    // Log error here since request failed
-                    Log.e(" ", t.toString());
-                }
-            });
-
-        }
-        private void getUniqueData(String brand, String couponID, String couponValue) {
-            ApiInterface apiService =
-                    retrofit.create(ApiInterface.class);
-            Map map = new HashMap();
-            map.put("uid", FirebaseAuth.getInstance().getUid());
-            map.put("brand", brand);
-            map.put("couponID", couponID);
-
-            Call<CouponItemResponse> call = apiService.getGeneralCouponSurvey(map);
-            call.enqueue(new Callback<CouponItemResponse>() {
-                @Override
-                public void onResponse(Call<CouponItemResponse>call, Response<CouponItemResponse> response) {
-                    Log.e("response ", response.toString());
-                    CouponItemResponse couponItemResponse = response.body();
-
-                    couponItemResponse.setCouponCode(couponItemList.get(getAdapterPosition()).getGeneralCouponCode());
-                    if(couponItemResponse.getContainsFeedBack()) {
-                        Intent intent = new Intent(context, FeedbackScreen.class);
-                        intent.putExtra("question_list", (Serializable) couponItemResponse.getQuestions());
-                        context.startActivity(intent);
-                    }
-                    Log.d("hello ", "Number of alerts received: " + response.toString());
                 }
 
                 @Override
@@ -146,27 +114,10 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.MyViewHold
             if(view.getId() == couponCard.getId()) {
                 positon = getAdapterPosition();
                  item = couponItemList.get(positon);
-                if (item.getShowCouponOnScreen() != null) {
+                if (item.getRedeem() != null) {
                     copyCode();
                 } else {
-                    if (item.getGeneralCouponCode() != null) {
-                        getGeneralData(item.getBrandName(), item.getCouponID());
-                        // contains general coupon code
-                        // hit general coupon Endpoint
-
-
-                        // if res.containsFeedback == true
-                        // show feedback
-                        // and item.getGeneralCouponCode() on last screen
-
-                    } else {
-//                        getUniqueData(item.getBrandName(), item.getCouponID());
-                        // hit unique coupon endpoint
-                        // if res.containsFeedback == true
-                        // show feedback
-                        // and res.couponcode on last screen
-
-                    }
+                    getGeneralData(item.getBrandName(), item.getCouponID());
                 }
             }
         }
@@ -181,6 +132,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.MyViewHold
 
     public CouponAdapter(List<CouponItem> couponItemList) {
         this.couponItemList = couponItemList;
+        ComponentFactory.getComponentFactory().getNetComponent().inject(this);
     }
 
     @Override
@@ -194,17 +146,18 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
+        holder.progressBar.setVisibility(View.GONE);
         CouponItem item = couponItemList.get(position);
         holder.title.setText(item.getTitle());
         holder.description.setText(item.getSubtitle());
         Picasso.with(context).load(item.getImgURL()).into(holder.couponImage);
-        if(item.getShowCouponOnScreen() == null) {
+        if(item.getRedeem() == null) {
             holder.clickCoupon.setVisibility(View.VISIBLE);
             holder.couponCodeLayout.setVisibility(View.GONE);
         } else {
             holder.clickCoupon.setVisibility(View.GONE);
             holder.couponCodeLayout.setVisibility(View.VISIBLE);
-            holder.couponValue.setText(item.getShowCouponOnScreen());
+            holder.couponValue.setText(item.getRedeem());
         }
     }
 
@@ -212,8 +165,6 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.MyViewHold
     public int getItemCount() {
         return couponItemList.size();
     }
-
-
 
 
 }

@@ -90,8 +90,8 @@ public class QRScanner extends BaseFragment implements ZXingScannerView.ResultHa
         Map map = new HashMap();
         map.put("uid", FirebaseAuth.getInstance().getUid());
         map.put("lid", "MAIT");
-        map.put("sid", "s0120");
-        map.put("category", "Male");
+        map.put("sid", "s0003");
+        map.put("category", "General");
         Call<CheckQr> call = apiService.getQrScannedRespose(map);
         call.enqueue(new Callback<CheckQr>() {
             @Override
@@ -101,7 +101,9 @@ public class QRScanner extends BaseFragment implements ZXingScannerView.ResultHa
                 if(checkQr.getStatus().equals("valid")) {
                     Intent intent = new Intent(getActivity(), FeedbackScreen.class);
                     intent.putExtra("question_list", (Serializable) checkQr.getDict().getQuestions());
-                    intent.putExtra("direction", "com.freestand.ranu.fsmark2.Activities.Welcome");
+                    intent.putExtra("survey_id", "s0003");
+                    intent.putExtra("sender", "qr_scanner");
+                    intent.putExtra("direction", "com.freestand.ranu.fsmark2.Activities.ThankYou");
                     startActivity(intent);
                 }
                 Log.d("hello ", "Number of alerts received: " + response.toString());

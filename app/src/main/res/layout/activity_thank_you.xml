@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#393939"
+    tools:context="com.freestand.ranu.fsmark2.Activities.ThankYou">
+
+    <RelativeLayout
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/thank_you"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="Thank You!"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/description"
+            android:layout_below="@+id/thank_you"
+            android:layout_width="match_parent"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:text="We will notify you about more Freebie's !"
+            android:gravity="center"/>
+        <TextView
+            android:layout_below="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="To stay updated &amp; to earn free cash or rewards \n follow us on :-"/>
+
+        <ImageButton
+            android:id="@+id/insta_button"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:background="@drawable/insta_btn"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/fb_button"/>
+        <ImageButton
+            android:id="@+id/fb_button"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:background="@drawable/fb_btn"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

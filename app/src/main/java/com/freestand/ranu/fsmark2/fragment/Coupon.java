@@ -64,7 +64,6 @@ public class Coupon extends BaseFragment {
     @Override
     void onFragmentCreated() {
         setRecyclerView();
-        getData();
     }
 
     @Override
@@ -108,5 +107,11 @@ public class Coupon extends BaseFragment {
             }
         });
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getData();
     }
 }

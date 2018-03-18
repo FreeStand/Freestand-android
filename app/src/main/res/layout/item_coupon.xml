@@ -32,7 +32,7 @@ android:layout_marginLeft="8dp"
         app:srcCompat="@drawable/com_facebook_button_icon_blue" />
 
     <ProgressBar
-        android:id="@+id/progressBar3"
+        android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="20dp"
         android:layout_height="20dp"

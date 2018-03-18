@@ -166,8 +166,4 @@ public class FacebookLoginActivity extends BaseActivity {
 
     }
 
-    private String makePhotoUrl(@NonNull String fbId) {
-        return  "https://graph.facebook.com/" + fbId + "/picture?type=large";
-    }
-
 }

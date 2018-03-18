@@ -11,23 +11,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class CouponItemResponse {
 
-    @SerializedName("containsFeedBack")
-    @Expose
-    private Boolean containsFeedBack;
     @SerializedName("questions")
     @Expose
     private List<Question> questions = null;
     @SerializedName("couponCode")
     @Expose
     private String couponCode;
-
-    public Boolean getContainsFeedBack() {
-        return containsFeedBack;
-    }
-
-    public void setContainsFeedBack(Boolean containsFeedBack) {
-        this.containsFeedBack = containsFeedBack;
-    }
 
     public List<Question> getQuestions() {
         return questions;
