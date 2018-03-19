@@ -41,7 +41,7 @@ public class AppController extends Application {
         firebaseAnalytics = FirebaseAnalytics.getInstance(this);
         Stetho.initializeWithDefaults(this);
 //        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-//        Fabric.with(this, new Crashlytics());
+        Fabric.with(this, new Crashlytics());
         Stetho.initializeWithDefaults(this);
         initilaiseFireBaseDb();
         ComponentFactory.getComponentFactory().getAppComponent(this);

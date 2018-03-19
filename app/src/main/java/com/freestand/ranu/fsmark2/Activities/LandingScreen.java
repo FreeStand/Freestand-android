@@ -35,6 +35,9 @@ import com.freestand.ranu.fsmark2.fragment.FAQ;
 import com.freestand.ranu.fsmark2.fragment.Home;
 import com.freestand.ranu.fsmark2.fragment.QRScanner;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.squareup.picasso.Picasso;
 
@@ -92,11 +95,19 @@ public class LandingScreen extends AppCompatActivity
     }
 
     private void setUserProfile() {
-//        String url = FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString();
-        String url = sharedPrefsHelper.get(Constants.USER_PHOTO_URL, "");
-        Picasso.with(this).load(url).into(profileImage);
-        userName.setText(sharedPrefsHelper.get(Constants.USER_NAME, ""));
-        email.setText(sharedPrefsHelper.get(Constants.USER_EMAIL, ""));
+        FirebaseDatabaseHelper.user.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Picasso.with(getBaseContext()).load(dataSnapshot.child("photoURL").getValue().toString()).into(profileImage);
+                email.setText(dataSnapshot.child("email").getValue().toString());
+                userName.setText(dataSnapshot.child("name").getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void setActionBar() {

@@ -48,10 +48,10 @@ android:layout_marginLeft="8dp"
         android:textSize="15sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/progressBar3"
+        android:layout_alignBottom="@+id/progressBar"
         android:layout_toEndOf="@+id/coupon_image"
         android:layout_toRightOf="@+id/coupon_image"
-        android:layout_toStartOf="@id/progressBar3"
+        android:layout_toStartOf="@id/progressBar"
         android:text="TextView" />
 
     <TextView
