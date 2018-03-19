@@ -96,7 +96,6 @@ public class Home extends BaseFragment {
     void onFragmentCreated() {
         setRecyclerView();
         setSwipeButton();
-        setKonfetti();
     }
 
     private void setKonfetti() {
@@ -192,6 +191,7 @@ public class Home extends BaseFragment {
 //                Get the surveyID to send to feedback screen from surveyID key
             }
         } else {
+            setKonfetti();
             boxToGrab.setVisibility(View.INVISIBLE);
             rvProducts.setVisibility(View.GONE);
             tvMessage.setVisibility(View.VISIBLE);

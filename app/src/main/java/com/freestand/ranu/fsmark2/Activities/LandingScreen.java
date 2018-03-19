@@ -138,10 +138,6 @@ public class LandingScreen extends AppCompatActivity
                 fragment = new Coupon();
                 loadFragmentWithBottomBar(fragment);
                 return true;
-            case R.id.history:
-                return true;
-            case R.id.address:
-                return true;
             case R.id.faq:
                 fragment = new FAQ();
                 loadFragmentWithoutBottomBar(fragment);

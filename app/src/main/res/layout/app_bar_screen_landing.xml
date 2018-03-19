@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
         <TextView
-            android:text="Next box will be available on 1 March !!, Next box will be available on 1 March !!"
+            android:text="Next box will be available on 1 March !!, Next box will be available on 21 April !!"
             android:id="@+id/moving_info"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
